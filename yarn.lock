@@ -154,6 +154,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@originprotocol/origin-storybook@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@originprotocol/origin-storybook/-/origin-storybook-0.11.1.tgz#5f128116c0cd57f5a23170eaa7276a41cf32234e"
+  integrity sha512-oHdrz5QeUu8WX12dkDCr3JAdagRaOdvUjo5XhThnmeNupminq006K4zD3YgnV2CT/SxD7tWG1Ki/0HBrB9kGGg==
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz#8be36a1f66f3265389e90b5f9c9962146758f728"
@@ -1350,11 +1355,6 @@ optionator@^0.9.1:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
     word-wrap "^1.2.3"
-
-origin-storybook@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/origin-storybook/-/origin-storybook-0.5.0.tgz#7775c4241303ce964ee89cae71827e96aa57cab9"
-  integrity sha512-C2TUe+SE4IbYatXDHICJ1OC1EZeb90s2JP2gmbbN0DkG9HL9Wx1sc3fBw1Q10KTEjLv1P6eugdTY5U8kBDNiaw==
 
 p-limit@^3.0.2:
   version "3.1.0"
