@@ -18,22 +18,25 @@ const Home: NextPage<{links:MappedLink<LinkFormatted<IconFormatted>>[]}> = ({
       </Head>
       <Header webProperty='story' mappedLinks={links} />
       <main className='max-w-screen-2xl mx-auto px-9'>
-        <div className='space-y-10 mb-24'>
-          <Typography.H2>
+        <div className='mb-24'>
+          <Typography.H2 className='mt-12' style={{
+            lineHeight: '4.25rem'
+          }}>
             We build tools that
             <br />
             <GradientText webProperty='story' text='power communities' />
           </Typography.H2>
-          <Typography.Body classes='text-2xl'>
+          <Typography.Body className='text-2xl mt-6' style={{color: '#475569'}}>
             NFT Collections, Community Drops, Artist <br/> Collabs. Made easy.
           </Typography.Body>
-          <Button type='primary' webProperty='story' label='Talk to us' size='large' />
+          <div className='pb-1' />
+          <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20 mt-8' />
         </div>
         <div className='flex items-end'>
           <Typography.H3>
             Collections
           </Typography.H3>
-          <Typography.Link classes='ml-6' styles={{
+          <Typography.Link className='ml-6' style={{
             position: 'relative',
             bottom: '0.4rem'
           }}>
