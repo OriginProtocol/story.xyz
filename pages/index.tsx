@@ -3,11 +3,14 @@ import Head from 'next/head'
 import { Button, Footer, GradientText, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
 import requestCmsData from '../src/requestCmsData'
 import styles from '../styles/Home.module.css'
+import { Card, CardProps } from 'origin-storybook'
 
-const Home: NextPage<{links:MappedLink<LinkFormatted<IconFormatted>>[]}> = ({
-  links
+const Home = ({
+  links,
+  collections
 }: {
-  links:MappedLink<LinkFormatted<IconFormatted>>[]
+  links: MappedLink<LinkFormatted<IconFormatted>>[],
+  collections: any
 }) => {
   return (
     <div className={styles.container}>
@@ -19,7 +22,7 @@ const Home: NextPage<{links:MappedLink<LinkFormatted<IconFormatted>>[]}> = ({
       <Header webProperty='story' mappedLinks={links} />
       <main className='max-w-screen-2xl mx-auto px-9'>
         <div className='mb-24'>
-          <Typography.H2 className='mt-12' style={{
+          <Typography.H2 className='mt-6' style={{
             lineHeight: '4.25rem'
           }}>
             We build tools that
@@ -36,12 +39,22 @@ const Home: NextPage<{links:MappedLink<LinkFormatted<IconFormatted>>[]}> = ({
           <Typography.H3>
             Collections
           </Typography.H3>
-          <Typography.Link className='ml-6' style={{
+          <Typography.Link className='ml-6 flex items-center' style={{
             position: 'relative',
-            bottom: '0.4rem'
+            bottom: '0.4rem',
           }}>
-            View all Collections &gt;
+            View all Collections
+            <svg width="9" height="10" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg" className='ml-1 relative' style={{top: '1px'}}>
+              <path d="M2 1.857L7.5 6.96415L2 12.0713" stroke="#0074F0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </Typography.Link>
+        </div>
+        <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
+          {
+            collections.map((collection: CardProps) => (
+              <Card {...collection} key={collection.title} />
+            ))
+          }
         </div>
       </main>
 
@@ -51,10 +64,10 @@ const Home: NextPage<{links:MappedLink<LinkFormatted<IconFormatted>>[]}> = ({
 }
 
 export async function getServerSideProps () {
-  const { links } = await requestCmsData()
+  const { links, collections } = await requestCmsData()
 
   return {
-    props: { links }
+    props: { links, collections }
   }
 }
 

@@ -154,10 +154,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@originprotocol/origin-storybook@^0.11.6":
-  version "0.11.6"
-  resolved "https://registry.yarnpkg.com/@originprotocol/origin-storybook/-/origin-storybook-0.11.6.tgz#ab5b12904d64f668549b7d5cb14a535952611a29"
-  integrity sha512-8eGRPrcEuf8SGDhbFxZs0k/DgNrnBl9Di8RihY5bOCiKy2sEvkw/UioDc/Md64mqmen4rbLMKssILfuc3sViNA==
+"@originprotocol/origin-storybook@^0.11.7":
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/@originprotocol/origin-storybook/-/origin-storybook-0.11.7.tgz#7e5e9e5c639132f2cbb9a58c48f24b644a9d5590"
+  integrity sha512-Vk7jjVH/KmdmFca40ej+2s7fGQkBS9jKvChighDzUclbyBakbpCcviZGfhF+YIo+2XHeDZ/w9tHpQDrxKb8Ycw==
 
 "@rushstack/eslint-patch@^1.1.3":
   version "1.2.0"
