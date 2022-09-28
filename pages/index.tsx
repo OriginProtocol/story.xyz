@@ -20,8 +20,8 @@ const Home = ({
       </Head>
       <Header webProperty='story' mappedLinks={links} />
       <main className='max-w-screen-2xl mx-auto px-9'>
-        <div className='mb-24'>
-          <Typography.H2 className='mt-6' style={{
+        <section className='mb-24'>
+          <Typography.H2 className='mt-6' as='h1' style={{
             lineHeight: '4.25rem'
           }}>
             We build tools that
@@ -33,28 +33,48 @@ const Home = ({
           </Typography.Body>
           <div className='pb-1' />
           <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20 mt-8' />
-        </div>
-        <div className='flex items-end'>
+        </section>
+        <section>
+          <div className='flex items-end'>
+            <Typography.H3>
+              Collections
+            </Typography.H3>
+            <Typography.Link className='ml-6 flex items-center' style={{
+              position: 'relative',
+              bottom: '0.4rem',
+            }}>
+              View all Collections
+              <svg width="9" height="10" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg" className='ml-1 relative' style={{top: '1px'}}>
+                <path d="M2 1.857L7.5 6.96415L2 12.0713" stroke="#0074F0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Typography.Link>
+          </div>
+          <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
+            {
+              collections.map((collection: CardProps) => (
+                <Card {...collection} key={collection.title} />
+              ))
+            }
+          </div>
+        </section>
+        <section className='text-center my-36'>
+          <div>
+            <Typography.H2>
+              We can help you
+              <br />
+              <GradientText webProperty='story' text=' launch your own marketplace' />
+            </Typography.H2>
+          </div>
+          <div className='space-x-5 mt-20'>
+            <Button webProperty='story' type='primary' label="Let's get started" size='large' />
+            <Button webProperty='story' type='secondary' label="Browse Collections" size='large' />
+          </div>
+        </section>
+        <section>
           <Typography.H3>
-            Collections
+            Drops
           </Typography.H3>
-          <Typography.Link className='ml-6 flex items-center' style={{
-            position: 'relative',
-            bottom: '0.4rem',
-          }}>
-            View all Collections
-            <svg width="9" height="10" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg" className='ml-1 relative' style={{top: '1px'}}>
-              <path d="M2 1.857L7.5 6.96415L2 12.0713" stroke="#0074F0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </Typography.Link>
-        </div>
-        <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
-          {
-            collections.map((collection: CardProps) => (
-              <Card {...collection} key={collection.title} />
-            ))
-          }
-        </div>
+        </section>
       </main>
 
       <Footer />

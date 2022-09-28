@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { IconFormatted, LinkFormatted, MappedLink } from 'origin-storybook'
 import qs from 'qs'
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api'
