@@ -61,11 +61,38 @@ const getCollections = async () => {
   return collections
 }
 
+const getDrops = async () => {
+  const query = qs.stringify({
+    populate: {
+      details: {
+        populate: '*'
+      }
+    }
+  }, {
+    encodeValuesOnly: true,
+  })
+
+  const data = await fetch(
+    `${apiUrl}/story-drops?${query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
+      }
+    }
+  )
+
+  const dataParsed = await data.json()
+  const drops = dataParsed.data
+
+  return drops
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const [links, collections] = await Promise.all([getNavLinks(), getCollections()])
+  const [links, collections, drops] = await Promise.all([getNavLinks(), getCollections(), getDrops()])
 
-  res.status(200).json({ links, collections })
+  res.status(200).json({ links, collections, drops })
 }

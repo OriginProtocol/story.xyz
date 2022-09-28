@@ -1,15 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
 import { Button, Card, CardProps, Footer, GradientText, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
+import Head from 'next/head'
 import requestCmsData from '../src/requestCmsData'
 import styles from '../styles/Home.module.css'
 
 const Home = ({
   links,
-  collections
+  collections,
+  drops,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[],
-  collections: any
+  collections: CardProps[],
+  drops: CardProps[],
 }) => {
   return (
     <div className={styles.container}>
@@ -74,6 +75,25 @@ const Home = ({
           <Typography.H3>
             Drops
           </Typography.H3>
+          <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
+            {
+              drops.map((collection: CardProps) => (
+                <Card {...collection} key={collection.title} />
+              ))
+            }
+          </div>
+        </section>
+        <section className='text-center my-36'>
+          <div>
+            <Typography.H2>
+              We can help you
+              <br />
+              <GradientText webProperty='story' text='execute a flawless drop' />
+            </Typography.H2>
+          </div>
+          <div className='mt-20'>
+            <Button webProperty='story' type='primary' label="Talk to us" size='large' />
+          </div>
         </section>
       </main>
 
@@ -83,10 +103,10 @@ const Home = ({
 }
 
 export async function getServerSideProps () {
-  const { links, collections } = await requestCmsData()
+  const { links, collections, drops } = await requestCmsData()
 
   return {
-    props: { links, collections }
+    props: { links, collections, drops }
   }
 }
 
