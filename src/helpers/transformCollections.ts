@@ -1,5 +1,3 @@
-import { CardProps } from "origin-storybook"
-
 type Collection = {
   id: number,
   attributes: {

@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Button, Footer, GradientText, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
+import { Button, Card, CardProps, Footer, GradientText, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
 import requestCmsData from '../src/requestCmsData'
 import styles from '../styles/Home.module.css'
-import { Card, CardProps } from 'origin-storybook'
 
 const Home = ({
   links,
