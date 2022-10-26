@@ -65,9 +65,9 @@ const transformCollections = (collections: Collection[]) => {
       body: collection.attributes.details.Card.description,
       linkText: collection.attributes.details.Card.linkDisplay,
       linkHref: collection.attributes.details.Card.linkURL,
-      imgSrc: collection.attributes.details.cover.data.attributes.formats.large.url,
+      img: collection.attributes.details.cover.data.attributes.formats.large.url,
       imgAlt: collection.attributes.details.cover.data.attributes.alternativeText,
-      thumbnailSrc: collection.attributes.details.thumbnail.data.attributes.formats.thumbnail.url,
+      thumbnail: collection.attributes.details.thumbnail.data.attributes.formats.thumbnail.url,
       thumbnailAlt: collection.attributes.details.thumbnail.data.attributes.alternativeText
     }
   })
