@@ -29,7 +29,7 @@ const Home = ({
       </Head>
       <Header webProperty='story' mappedLinks={links} />
       <span className={`${styles.spline34} absolute z-0`}>
-        <Image src='/splines-00034.png' height={1363} width={1341} alt="spline" />
+        <Image src='/splines-00034.png' width={1341} height={1363} alt="spline" />
       </span>
       <main>
         <div className='max-w-screen-xl mx-auto px-9'>
@@ -66,7 +66,7 @@ const Home = ({
                     <Card
                       {...collection}
                       img={
-                        <Image src={collection.img} alt={collection.imgAlt} layout='fill' objectFit='cover' priority />
+                        <Image src={collection.img} alt={collection.imgAlt} width='640' height='427' priority />
                       }
                       thumbnail={
                         <Image src={collection.thumbnail} alt={collection.thumbnailAlt} layout='fill' objectFit='cover' priority />
@@ -101,7 +101,7 @@ const Home = ({
                   <Card
                     {...collection}
                     img={
-                      <Image src={collection.img} alt={collection.imgAlt} layout='fill' objectFit='cover' priority />
+                      <Image src={collection.img} alt={collection.imgAlt} width='640' height='427' priority />
                     }
                     thumbnail={
                       <Image src={collection.thumbnail} alt={collection.thumbnailAlt} layout='fill' objectFit='cover' priority />
@@ -172,7 +172,6 @@ const Home = ({
 
 export async function getStaticProps () {
   const { links, collections, drops } = await requestCmsData()
-  console.log(links, collections, drops)
 
   return {
     props: { links, collections, drops },
