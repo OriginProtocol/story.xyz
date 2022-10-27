@@ -1,8 +1,10 @@
 import { Button, Card, CardProps, Footer, GradientText, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
 import Head from 'next/head'
 import Image from 'next/image'
+import Dashboard from '../src/components/Dashboard'
 import requestCmsData from '../src/requestCmsData'
-import styles from '../styles/Home.module.css'
+import requestOgnData from '../src/requestOgnData'
+import styles from '../src/styles/Home.module.css'
 
 interface CollectionProps extends CardProps {
   img: string
@@ -15,10 +17,16 @@ const Home = ({
   links,
   collections,
   drops,
+  ognInfo,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[],
   collections: CollectionProps[],
   drops: CollectionProps[],
+  ognInfo: {
+    circulatingOgn: number,
+    totalOgn: number,
+    ognPrice: number,
+  }
 }) => {
   return (
     <div className='relative overflow-hidden'>
@@ -132,36 +140,7 @@ const Home = ({
             </div>
           </section>
         </div>
-        <div className='z-10 relative py-9 md:py-28' style={{
-            backgroundColor: '#0074F0'
-          }}>
-          <section className='max-w-screen-xl mx-auto px-9'>
-            <div className='flex justify-between'>
-              <Typography.H2 className={styles.header} style={{
-                color: 'white'
-              }}>
-                Origin Story Governance&nbsp;
-                <br className='hidden md:block' />
-                is powered by Origin&apos;s&nbsp;
-                <br className='hidden md:block' />
-                Native Token: OGN
-              </Typography.H2>
-              <div className='flex flex-col items-center w-1/3'>
-                <Image src='/origin-logo.svg' width='300' height='300' alt='Origin logo' />
-                <div>
-                  <Typography.Body2 className='opacity-75 text-white text-center mt-10 '>
-                    OGN is listed on all major exchanges
-                  </Typography.Body2>
-                  <div className='flex space-x-8 items-center mt-2 justify-between w-100'>
-                    <Image src='/binance-logo.svg' width={148} height={30} alt='Binance logo' />
-                    <Image src='/ftx-logo.svg' width={107} height={33} alt='FTX logo' />
-                    <Image src='/coinbase-logo.svg' width={134} height={24} alt='Coinbase logo' />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
+        <Dashboard {...ognInfo} />
       </main>
       <div className='relative z-10'>
         <Footer />
@@ -172,12 +151,12 @@ const Home = ({
 
 export async function getStaticProps () {
   const { links, collections, drops } = await requestCmsData()
+  const ognInfo = await requestOgnData()
 
   return {
-    props: { links, collections, drops },
+    props: { links, collections, drops, ognInfo },
     revalidate: 5 * 60, // revalidate every 5 minutes
   }
 }
-
 
 export default Home
