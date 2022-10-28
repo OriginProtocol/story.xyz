@@ -42,7 +42,7 @@ export default function Dashboard ({
                 infoMap.map(([label, unit, value, decimals]) => (
                   <div
                     className=''
-                    key={1}
+                    key={label}
                   >
                       <Typography.Label>
                         {label}
@@ -73,12 +73,12 @@ export default function Dashboard ({
             </div>
           </div>
         </div>
-        <div className='w-full text-white flex flex-col items-center py-32 relative'>
-          <Typography.H1 as='h3' className='align-center' style={{fontWeight: 500}}>
+        <div className='w-full text-white flex flex-col items-center pt-48 pb-20 relative'>
+          <Typography.H1 as='h3' className='text-center' style={{fontWeight: 500}}>
             Stake OGN
             <br />
-            <div className='-mt-6 align-center'>
-              <GradientText webProperty='story'>
+            <div className='-mt-4'>
+              <GradientText webProperty='story' gradients={['#AFA1FF', '#F68BFF', '#FD9AC2']}>
                 earn rewards
               </GradientText>
             </div>
@@ -89,7 +89,7 @@ export default function Dashboard ({
           <a href='' className='px-10 py-4 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB]'>
             Earn Rewards
           </a>
-          <div className='absolute top-32' style={{right: 'calc(50% - 80rem)'}}>
+          <div className='absolute' style={{right: 'calc(50% - 62rem)', top: '24rem'}}>
             <Image src='/splines-00021.png' width='1156' height='1140' alt='Spline 21' />
           </div>
         </div>
