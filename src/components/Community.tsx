@@ -234,12 +234,12 @@ const Community = ({
                   height="17px"
                 />
               </div>
-              <div className="flex-column md:justify-center space-x-0 mt-8 mb-16">
+              <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 mt-8 mb-16">
                 <Button
                   href="/community"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className='mr-4'
+                  className='md:mr-4'
                 >
                   Meet our team
                 </Button>
@@ -247,7 +247,7 @@ const Community = ({
                   href="https://angel.co/company/originprotocol/jobs"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="md:px-10 mt-2"
+                  className="px-2 md:px-10 mt-2"
                   type='secondary'
                 >
                   View careers
@@ -266,7 +266,7 @@ const Community = ({
                 />
               </span>
               <div
-                className={`relative p-10 bg-black mt-10 mb-10 rounded-[1.25rem] w-[580px] h-[335px] overflow-hidden`}
+                className={`relative p-10 bg-black mt-10 mb-10 rounded-[1.25rem] mx-6 pb-[56.25%] md:w-[580px] h-[335px] overflow-hidden`}
               >
                 <iframe
                   src="https://www.youtube.com/embed/ERh2n-vlpQ4"
