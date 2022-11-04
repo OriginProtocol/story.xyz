@@ -1,6 +1,6 @@
 import { Button, Card, CardProps, Footer, GradientText, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import Dashboard from '../src/components/Dashboard'
 import requestCmsData from '../src/requestCmsData'
 import requestOgnData from '../src/requestOgnData'
@@ -36,19 +36,21 @@ const Home = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header webProperty='story' mappedLinks={links} />
-      <span className={`${styles.spline34} absolute z-0`}>
+      <span className={`${styles.spline34} absolute z-0 left-64 md:left-[calc(65%)]`}>
         <Image src='/splines-00034.png' width={1341} height={1363} alt="spline" />
       </span>
       <main>
         <div className='max-w-screen-xl mx-auto px-9'>
           <section className='mb-24 relative'>
             <Typography.H2 className='mt-6' as='h1'>
-              We build tools that
-              <br />
+              We build tools that {' '}
+              <br className='hidden md:block' />
               <GradientText webProperty='story' text='power communities' />
             </Typography.H2>
             <Typography.Body className='text-2xl mt-6' style={{color: '#475569'}}>
-              NFT Collections, Community Drops, Artist <br/> Collabs. Made easy.
+              NFT Collections, Community Drops, Artist {' '}
+              <br className='hidden md:block' />
+              Collabs. Made easy.
             </Typography.Body>
             <div className='pb-1' />
             <Button type='primary' webProperty='story' label='Talk to us' size='medium' className='px-20 mt-8' />
@@ -58,8 +60,7 @@ const Home = ({
               <Typography.H3>
                 Collections
               </Typography.H3>
-              <Typography.Link className='ml-6 flex items-center' style={{
-                position: 'relative',
+              <Typography.Link className='ml-6 hidden md:flex items-center relative' style={{
                 bottom: '0.4rem',
               }}>
                 View all Collections
@@ -77,7 +78,7 @@ const Home = ({
                         <Image src={collection.img} alt={collection.imgAlt} width='640' height='427' priority />
                       }
                       thumbnail={
-                        <Image src={collection.thumbnail} alt={collection.thumbnailAlt} layout='fill' objectFit='cover' priority />
+                        <Image src={collection.thumbnail} alt={collection.thumbnailAlt || ''} width='100' height='100' priority />
                       }
                       key={collection.title}
                     />
@@ -112,7 +113,7 @@ const Home = ({
                       <Image src={collection.img} alt={collection.imgAlt} width='640' height='427' priority />
                     }
                     thumbnail={
-                      <Image src={collection.thumbnail} alt={collection.thumbnailAlt} layout='fill' objectFit='cover' priority />
+                      <Image src={collection.thumbnail} alt={collection.thumbnailAlt || ''} width='100' height='100' priority />
                     }
                     key={collection.title}
                   />
