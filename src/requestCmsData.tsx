@@ -6,8 +6,8 @@ const requestCms = async () => {
   const [ links, collections, drops ] = await Promise.all([getNavLinks(), getCollections(), getDrops()])
   return {
     links: transformLinks(links),
-     collections: transformCollections(collections),
-     drops: transformCollections(drops),
+    collections: transformCollections(collections),
+    drops: transformCollections(drops),
   }
 }
 
