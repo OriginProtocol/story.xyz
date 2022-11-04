@@ -42,7 +42,10 @@ export function formatCurrencyAbbreviated(num: number, decimalDigits: number) {
     : "0";
 }
 
-export function formatCurrency(value: string, decimals: number, truncate = true) {
+export function formatCurrency(value: string | number, decimals: number, truncate = true) {
+  if (typeof value === 'number') {
+    value = value.toString()
+  }
   // avoid false formatting of e - notated numbers
   if (parseFloat(value) < Math.pow(10, decimals * -1)) {
     value = '0';

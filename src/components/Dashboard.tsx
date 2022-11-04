@@ -26,7 +26,7 @@ export default function Dashboard ({
   ]
 
   return (
-    <div className='z-10 relative py-9 md:py-28 bg-[#0074F0]'>
+    <div className='z-10 relative py-9 md:py-28 bg-[#0074F0] overflow-hidden'>
       <section className='max-w-screen-xl mx-auto px-9'>
         <div className='flex flex-col md:flex-row justify-between'>
           <div className='flex flex-col text-white'>

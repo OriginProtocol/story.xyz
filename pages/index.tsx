@@ -5,6 +5,7 @@ import Dashboard from '../src/components/Dashboard'
 import requestCmsData from '../src/requestCmsData'
 import requestOgnData from '../src/requestOgnData'
 import styles from '../src/styles/Home.module.css'
+import Community, { Social } from '../src/components/Community'
 
 interface CollectionProps extends CardProps {
   img: string
@@ -18,6 +19,7 @@ const Home = ({
   collections,
   drops,
   ognInfo,
+  socials,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[],
   collections: CollectionProps[],
@@ -26,7 +28,8 @@ const Home = ({
     circulatingOgn: number,
     totalOgn: number,
     ognPrice: number,
-  }
+  },
+  socials: Social[]
 }) => {
   return (
     <div className='relative overflow-hidden'>
@@ -142,6 +145,7 @@ const Home = ({
           </section>
         </div>
         <Dashboard {...ognInfo} />
+        <Community socials={socials} />
       </main>
       <div className='relative z-10'>
         <Footer />
@@ -153,9 +157,11 @@ const Home = ({
 export async function getStaticProps () {
   const { links, collections, drops } = await requestCmsData()
   const ognInfo = await requestOgnData()
+  const socialRes = await fetch(`${process.env.NEXT_LEGACY_WEBSITE_HOST}/social-stats`);
+  const socials = await socialRes.json();
 
   return {
-    props: { links, collections, drops, ognInfo },
+    props: { links, collections, drops, ognInfo, socials: socials.stats },
     revalidate: 5 * 60, // revalidate every 5 minutes
   }
 }
