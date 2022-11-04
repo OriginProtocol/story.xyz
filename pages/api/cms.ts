@@ -4,7 +4,7 @@ import qs from 'qs'
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api'
 
-const getNavLinks = async () => {
+export const getNavLinks = async () => {
   const query = qs.stringify({
     populate: {
       details: {
@@ -34,7 +34,7 @@ const getNavLinks = async () => {
   return links
 }
 
-const getCollections = async () => {
+export const getCollections = async () => {
   const query = qs.stringify({
     populate: {
       details: {
@@ -61,7 +61,7 @@ const getCollections = async () => {
   return collections
 }
 
-const getDrops = async () => {
+export const getDrops = async () => {
   const query = qs.stringify({
     populate: {
       details: {

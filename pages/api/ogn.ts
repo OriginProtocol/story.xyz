@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const getOgn = async () => {
+export const getOgn = async () => {
   const ognFetches = await Promise.all([
     fetch(`${process.env.NEXT_LEGACY_WEBSITE_HOST}/circulating-ogn`),
     fetch(`${process.env.NEXT_LEGACY_WEBSITE_HOST}/total-ogn`),

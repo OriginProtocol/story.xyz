@@ -1,9 +1,9 @@
-import transformLinks from "./helpers/transformLinks"
+import { getCollections, getDrops, getNavLinks } from "../pages/api/cms"
 import transformCollections from "./helpers/transformCollections"
+import transformLinks from "./helpers/transformLinks"
 
 const requestCms = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cms`)
-  const { links, collections, drops } = await data.json()
+  const [ links, collections, drops ] = await Promise.all([getNavLinks(), getCollections(), getDrops()])
   return {
     links: transformLinks(links),
      collections: transformCollections(collections),

@@ -1,9 +1,7 @@
-import transformLinks from "./helpers/transformLinks"
-import transformCollections from "./helpers/transformCollections"
+import { getOgn } from "../pages/api/ogn"
 
 const requestOgnData = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/ogn`)
-  const { circulatingOgn, totalOgn, ognPrice } = await data.json()
+  const [ circulatingOgn, totalOgn, ognPrice ] = await getOgn()
   return { circulatingOgn, totalOgn, ognPrice }
 }
 
