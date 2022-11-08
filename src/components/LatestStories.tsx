@@ -5,12 +5,12 @@ import React from 'react'
 import { Article } from './types'
 
 const LatestStories = ({
-  articles
+  articles,
 }: {
   articles: Article[]
 }) => {
   return (
-    <section className="news bg-[#f6f8fe] md:mt-32">
+    <section className="bg-[#f6f8fe] md:mt-32">
       <div className="mx-auto">
         <div className="flex flex-col px-7 py-12 max-w-screen-xl mx-auto md:py-32">
           <div className="flex flex-col mt-1 md:mt-10 md:flex-row md:items-center md:justify-between">

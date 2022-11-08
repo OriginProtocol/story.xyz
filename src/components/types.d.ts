@@ -3,10 +3,16 @@ export type Article = {
   description: string,
   slug: string,
   cover?: {
-    url: string
+    url: string,
+    alternativeText: string
   },
   cardCover?: {
-    url: string
+    url: string,
+    alternativeText: string
+  },
+  category: {
+    name: string
+    slug: string
   }
 }
 
@@ -43,3 +49,12 @@ export type SeoFormatted = {
     url: string
   },
 }
+
+export type Meta =  {
+    pagination: {
+      page: number,
+      pageSize: number,
+      pageCount: number,
+      total: number,
+    }
+  }

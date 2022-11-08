@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import qs from 'qs'
-import { Article } from '../components/types'
+import { Article, Meta } from '../components/types'
 
 const apiUrl = process.env.STRAPI_API_URL || 'http://localhost:1337/api'
 
@@ -89,7 +89,7 @@ export const getDrops = async () => {
   return drops
 }
 
-export const getArticles: () => Promise<Article[]> = async () => {
+export const getArticles: () => Promise<[Article[], Meta]> = async () => {
   const data = await fetch(
     `${apiUrl}/story/blog/en`, {
       method: 'GET',
@@ -100,8 +100,10 @@ export const getArticles: () => Promise<Article[]> = async () => {
     }
   )
 
-  const articlesParsed = await data.json()
-  const articles = articlesParsed.data
 
-  return articles
+  const articlesParsed = await data.json()
+  const articles = articlesParsed.data;
+  const meta: Meta = articlesParsed.meta;
+
+  return [articles, meta]
 }
