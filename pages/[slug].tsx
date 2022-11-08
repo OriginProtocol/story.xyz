@@ -54,6 +54,7 @@ const Article = ({
               height="7"
               className="ml-2"
               alt="left arrow"
+              priority
             />
             <Link href="/blog" className="ml-3">
               Back to home page

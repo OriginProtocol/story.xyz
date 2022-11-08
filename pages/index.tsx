@@ -44,7 +44,7 @@ const Home = ({
       </Head>
       <Header webProperty='story' mappedLinks={links} />
       <span className={`${styles.spline34} absolute z-0 left-64 md:left-[calc(65%)]`}>
-        <Image src='/splines-00034.png' width={1341} height={1363} alt="spline" />
+        <Image src='/splines-00034.png' width={1341} height={1363} alt="spline" priority />
       </span>
       <main>
         <div className='max-w-screen-xl mx-auto px-9'>

@@ -43,6 +43,7 @@ const Community = ({
                 alt="Ellipses"
                 width="635px"
                 height="635px"
+                priority
               />
             </div>
             <div className="md:flex md:flex-col md:items-start md:justify-center md:pl-16 md:flex-1">
