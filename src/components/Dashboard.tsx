@@ -53,7 +53,7 @@ export default function Dashboard ({
                         {label}
                       </Typography.Label>
                       <p className='text-[1.5rem] md:text-[2.5rem] font-bold'>
-                        {unit}{formatCurrency(value.toString(), decimals)}
+                        {unit}{value ? formatCurrency(value.toString(), decimals) : ''}
                       </p>
                   </div>
                 ))
