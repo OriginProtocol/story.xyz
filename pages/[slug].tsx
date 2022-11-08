@@ -55,7 +55,7 @@ const Article = ({
               className="ml-2"
               alt="left arrow"
             />
-            <Link href="/company" className="ml-3">
+            <Link href="/blog" className="ml-3">
               Back to home page
             </Link>
           </Typography.Link>
