@@ -49,7 +49,7 @@ const Article = ({
         <div className="max-w-screen-lg mx-auto">
           <Typography.Link className="flex space-x-2">
             <Image
-              src="/images/left-arrow.svg"
+              src="/left-arrow.svg"
               width="10"
               height="7"
               className="ml-2"
