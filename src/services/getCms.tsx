@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import qs from 'qs'
+import { Article } from '../components/types'
 
 const apiUrl = process.env.STRAPI_API_URL || 'http://localhost:1337/api'
 
@@ -88,11 +89,19 @@ export const getDrops = async () => {
   return drops
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  const [links, collections, drops] = await Promise.all([getNavLinks(), getCollections(), getDrops()])
+export const getArticles: () => Promise<Article[]> = async () => {
+  const data = await fetch(
+    `${apiUrl}/story/blog/en`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
+      }
+    }
+  )
 
-  res.status(200).json({ links, collections, drops })
+  const articlesParsed = await data.json()
+  const articles = articlesParsed.data
+
+  return articles
 }

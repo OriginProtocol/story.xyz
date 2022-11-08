@@ -6,6 +6,7 @@ type LinkSet<Link> = {
     isButton: boolean
     highlightText?: string
     links: Link[]
+    target: string
   }
 }
 
@@ -16,6 +17,7 @@ type Link<Icon> = {
   order: number
   isHighlight: boolean
   icon?: Icon
+  target: string
 }
 
 type Icon = {
@@ -33,19 +35,21 @@ const transformLinks = (links: LinkSet<Link<Icon>>[]) => {
     return a.order - b.order
   }
 
-  const linkedMapSet = links.map((linkSet: LinkSet<Link<Icon>>) => {
+  const linkedMapSet = links.map((linkSet) => {
     return {
       href: linkSet.attributes.href,
       label: linkSet.attributes.label,
       isButton: linkSet.attributes.isButton,
-      highlightText: linkSet.attributes.highlightText,
+      highlightText: linkSet.attributes.highlightText || null,
       order: linkSet.attributes.order,
-      links: linkSet.attributes.links.map((link: Link<Icon>) => {
+      target: linkSet.attributes.target,
+      links: linkSet.attributes.links.map((link) => {
         return {
           label: link.label,
           href: link.href,
           highlight: link.isHighlight,
-          icon: link.icon?.data?.attributes || null
+          icon: link.icon?.data?.attributes || null,
+          target: link.target,
         }
       }).sort(sortOrder)
     }

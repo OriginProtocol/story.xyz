@@ -1,3 +1,5 @@
+const locales = require('./locales');
+
 const { NEXT_LEGACY_WEBSITE_HOST } = process.env
 
 // API endpoints that should be forwarded to the legacy site
@@ -29,7 +31,25 @@ const nextConfig = {
   },
   images: {
     loader: "default",
-    domains: ["localhost", "cmsmediaproduction.s3.amazonaws.com", "cmsmediastaging.s3.amazonaws.com", "avatars.githubusercontent.com"],
+    domains: ["localhost", "0.0.0.0", "lh5.googleusercontent.com", "cmsmediaproduction.s3.amazonaws.com", "cmsmediastaging.s3.amazonaws.com", "avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.s3.amazonaws.com'
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost'
+      }
+    ]
+  },
+  i18n: {
+    locales,
+    defaultLocale: 'en',
   },
 }
 

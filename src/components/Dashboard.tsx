@@ -1,7 +1,7 @@
 import { Button, GradientText, Typography } from '@originprotocol/origin-storybook'
 import Image from 'next/future/image'
 import styles from '../styles/Home.module.css'
-import { formatCurrency } from '../utils/math'
+import { formatCurrency } from '../helpers/math'
 
 type Props = {
   circulatingOgn: number

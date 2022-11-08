@@ -6,6 +6,8 @@ import requestCmsData from '../src/requestCmsData'
 import requestOgnData from '../src/requestOgnData'
 import styles from '../src/styles/Home.module.css'
 import Community, { Social } from '../src/components/Community'
+import LatestStories from '../src/components/LatestStories'
+import { Article } from '../src/components/types'
 
 interface CollectionProps extends CardProps {
   img: string
@@ -20,6 +22,7 @@ const Home = ({
   drops,
   ognInfo,
   socials,
+  articles,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[],
   collections: CollectionProps[],
@@ -29,7 +32,8 @@ const Home = ({
     totalOgn: number,
     ognPrice: number,
   },
-  socials: Social[]
+  socials: Social[],
+  articles: Article[],
 }) => {
   return (
     <div className='relative overflow-hidden'>
@@ -56,7 +60,7 @@ const Home = ({
               Collabs. Made easy.
             </Typography.Body>
             <div className='pb-1' />
-            <Button type='primary' webProperty='story' label='Talk to us' size='medium' className='px-20 mt-8' />
+            <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20 mt-8' />
           </section>
           <section className='relative z-10'>
             <div className='flex items-end'>
@@ -146,6 +150,7 @@ const Home = ({
         </div>
         <Dashboard {...ognInfo} />
         <Community socials={socials} />
+        <LatestStories articles={articles} />
       </main>
       <div className='relative z-10'>
         <Footer />
@@ -155,13 +160,20 @@ const Home = ({
 }
 
 export async function getStaticProps () {
-  const { links, collections, drops } = await requestCmsData()
+  const { links, collections, drops, articles } = await requestCmsData()
   const ognInfo = await requestOgnData()
   const socialRes = await fetch(`${process.env.NEXT_LEGACY_WEBSITE_HOST}/social-stats`);
-  const socials = await socialRes.json();
+  const socials = await socialRes.json()
 
   return {
-    props: { links, collections, drops, ognInfo, socials: socials.stats },
+    props: {
+      links,
+      collections,
+      drops,
+      ognInfo,
+      socials: socials.stats,
+      articles
+    },
     revalidate: 5 * 60, // revalidate every 5 minutes
   }
 }

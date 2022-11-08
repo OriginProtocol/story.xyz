@@ -4,7 +4,7 @@ import {
 } from "@originprotocol/origin-storybook";
 import Image from "next/image";
 import { useStoreState } from "pullstate";
-import { formatCurrency } from "../utils/math";
+import { formatCurrency } from "../helpers/math";
 
 export type Social = {
   id: number,
