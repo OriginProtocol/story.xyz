@@ -59,8 +59,8 @@ const Home = ({
               <br className='hidden md:block' />
               Collabs. Made easy.
             </Typography.Body>
-            <div className='pb-1' />
-            <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20 mt-8' />
+            <div className='pb-1 mb-14' />
+            <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20' />
           </section>
           <section className='relative z-10'>
             <div className='flex items-end'>
