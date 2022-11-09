@@ -55,7 +55,7 @@ const Community = ({
               </div>
               <Button
                 target="_blank"
-                href={"/community"}
+                href={"https://originprotocol.com/community"}
                 rel="noopener noreferrer"
                 className="button gradient2"
               >
@@ -237,7 +237,7 @@ const Community = ({
               </div>
               <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 mt-8 mb-16">
                 <Button
-                  href="/community"
+                  href="https://originprotocol.com/community"
                   target="_blank"
                   rel="noopener noreferrer"
                   className='md:mr-4'
