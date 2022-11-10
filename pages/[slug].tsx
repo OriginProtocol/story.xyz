@@ -6,10 +6,14 @@ import Moment from "react-moment";
 import styles from "../src/styles/Article.module.css";
 import { fetchAPI } from "../src/helpers/fetchApi";
 import requestCms from "../src/requestCmsData";
+import transformSeo from "../src/helpers/transformSeo";
+import { SeoFormatted } from "../src/components/types";
+import Seo from "../src/components/Seo";
 
 const Article = ({
   article,
-  links
+  links,
+  seo
 }: {
   article: {
     author: {
@@ -28,6 +32,7 @@ const Article = ({
     title: string
   },
   links: MappedLink<LinkFormatted<IconFormatted>>[]
+  seo: SeoFormatted
 }) => {
   const imageUrl = article.cover?.url;
 
@@ -39,6 +44,7 @@ const Article = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header webProperty='story' mappedLinks={links} />
+      <Seo seo={seo} />
       <main>
       <div
         className="pb-20 px-6"
@@ -162,6 +168,7 @@ export async function getStaticProps({
     props: {
       article: data,
       links,
+      seo: transformSeo(data.seo)
     },
     revalidate: 5 * 60, // Cache response for 5m
   };

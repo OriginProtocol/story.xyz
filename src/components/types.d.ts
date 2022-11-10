@@ -51,10 +51,10 @@ export type SeoFormatted = {
 }
 
 export type Meta =  {
-    pagination: {
-      page: number,
-      pageSize: number,
-      pageCount: number,
-      total: number,
-    }
+  pagination: {
+    page: number,
+    pageSize: number,
+    pageCount: number,
+    total: number,
   }
+}

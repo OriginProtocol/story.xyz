@@ -7,8 +7,11 @@ import requestOgnData from '../src/requestOgnData'
 import styles from '../src/styles/Home.module.css'
 import Community, { Social } from '../src/components/Community'
 import LatestStories from '../src/components/LatestStories'
-import { Article, Meta } from '../src/components/types'
+import { Article, Meta, SeoFormatted } from '../src/components/types'
 import News from '../src/components/Articles'
+import transformSeo from '../src/helpers/transformSeo'
+import { fetchAPI } from '../src/helpers/fetchApi'
+import Seo from '../src/components/Seo'
 
 interface CollectionProps extends CardProps {
   img: string
@@ -21,7 +24,8 @@ const Blog = ({
   links,
   articles,
   categories,
-  meta
+  meta,
+  seo
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[],
   collections: CollectionProps[],
@@ -37,7 +41,8 @@ const Blog = ({
     name: string,
     slug: string
   }[],
-  meta: Meta
+  meta: Meta,
+  seo: SeoFormatted,
 }) => {
   return (
     <div className='relative overflow-hidden'>
@@ -47,6 +52,7 @@ const Blog = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header webProperty='story' mappedLinks={links} />
+      <Seo seo={seo} />
       <main>
       <section className="">
       <div className="mx-auto">
@@ -70,7 +76,8 @@ export async function getStaticProps () {
   const { links, collections, drops, articles, meta } = await requestCmsData()
   const ognInfo = await requestOgnData()
   const socialRes = await fetch(`${process.env.NEXT_LEGACY_WEBSITE_HOST}/social-stats`);
-  const socials = await socialRes.json()
+  const socials = await socialRes.json();
+  const seoRes = await fetchAPI("/story/page/en/%2Fblog");
 
   const categories: {
     [key: string]: { name: string, slug: string }
@@ -94,7 +101,8 @@ export async function getStaticProps () {
       socials: socials.stats,
       articles,
       categories: categoryList,
-      meta
+      meta,
+      seo: transformSeo(seoRes.data),
     },
     revalidate: 5 * 60, // revalidate every 5 minutes
   }
