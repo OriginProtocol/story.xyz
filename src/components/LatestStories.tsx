@@ -26,7 +26,7 @@ const LatestStories = ({
             </Link>
           </div>
           {articles && (
-            <div className="article-container mt-9 md:mb-4 space-y-6 md:space-y-0 md:grid md:grid-cols-3 gap-10">
+            <div className="article-container mt-9 md:mb-4 space-y-6 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10">
               {articles.slice(0, 3).map((article, i) => (
                 <Card
                   key={i}

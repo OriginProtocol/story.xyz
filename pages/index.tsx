@@ -66,7 +66,7 @@ const Home = ({
               Collabs. Made easy.
             </Typography.Body>
             <div className='pb-1 mb-14' />
-            <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20' />
+            <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20' href='mailto: partnerships@story.xyz' target='_blank' rel='noreferrer' />
           </section>
           <section className='relative z-10'>
             <div className='flex items-end'>
@@ -82,7 +82,7 @@ const Home = ({
                 </svg>
               </Typography.Link>
             </div>
-            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
+            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
               {
                 collections.map((collection) => (
                     <Card
@@ -109,15 +109,15 @@ const Home = ({
               </Typography.H2>
             </div>
             <div className='space-y-4 md:space-y-0 md:space-x-5 mt-10 md:mt-20'>
-              <Button webProperty='story' type='primary' label="Let's get started" size='large' />
-              <Button webProperty='story' type='secondary' label="Browse Collections" size='large' />
+              <Button type='primary' webProperty='story' label="Let's get started" size='large' className='px-20' href='mailto: partnerships@story.xyz' target='_blank' rel='noreferrer' />
+              {/* <Button webProperty='story' type='secondary' label="Browse Collections" size='large' /> */}
             </div>
           </section>
           <section>
             <Typography.H3>
               Drops
             </Typography.H3>
-            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
+            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
               {
                 drops.map((collection) => (
                   <Card
@@ -150,7 +150,7 @@ const Home = ({
               </span>
             </div>
             <div className='mt-10 md:mt-20'>
-              <Button webProperty='story' type='primary' label="Talk to us" size='large' />
+              <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20' href='mailto: partnerships@story.xyz' target='_blank' rel='noreferrer' />
             </div>
           </section>
         </div>
