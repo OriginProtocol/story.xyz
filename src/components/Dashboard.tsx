@@ -60,8 +60,8 @@ export default function Dashboard ({
               }
             </div>
             <div className='flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4'>
-              <Button label='Buy OGN' webProperty='story' type='secondary' href='/stake' className='text-center' />
-              <Button label='View Dashboard' webProperty='story' type='secondary' className='text-center' />
+              <Button label='Buy OGN' webProperty='story' type='secondary' className='text-center' href="https://api.originprotocol.com/dashboard" target='_blank' rel='noreferrer'  />
+              <Button label='View Dashboard' webProperty='story' type='secondary' className='text-center' href="https://api.originprotocol.com/dashboard" target='_blank' rel='noreferrer' />
             </div>
           </div>
           <div className='flex flex-col justify-between items-center md:w-1/3'>
@@ -91,10 +91,10 @@ export default function Dashboard ({
           <Typography.Body className='mt-6 text-center'>
             Earn 100% of all marketplace fees when you stake your OGN
           </Typography.Body>
-          <a href='' className='w-full md:hidden text-center px-10 py-4 mb-16 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB]'>
+          <a href='https://story.xyz/staking' className='cursor-pointer w-full md:hidden text-center px-10 py-4 mb-16 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB] relative z-20'>
             Earn Rewards
           </a>
-          <a href='' className='hidden md:block w-64 text-center px-10 py-4 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB]'>
+          <a href='https://story.xyz/staking' className='cursor-pointer hidden md:block w-64 text-center px-10 py-4 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB] relative z-20' target='_blank' rel='noreferrer'>
             Earn Rewards
           </a>
           <div className='absolute' style={{right: 'calc(50% - 62rem)', top: '24rem'}}>
