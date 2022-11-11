@@ -3,7 +3,6 @@ import {
   Button, Typography
 } from "@originprotocol/origin-storybook";
 import Image from "next/image";
-import { useStoreState } from "pullstate";
 import { formatCurrency } from "../helpers/math";
 
 export type Social = {
@@ -34,9 +33,7 @@ const Community = ({
       <div className="mx-auto">
         <div className="flex flex-col">
           <div className="flex flex-col mx-auto pt-10 px-10 max-w-screen-xl md:flex-row md:flex-1 md:mt-12 md:pb-24">
-            <div style={{
-              maxWidth: "635px",
-            }}>
+            <div className='max-w-[400px] md:max-w-[635px] mx-auto my-10 md:my-0'>
               <Image
                 src={"/ellipses-homepage.png"}
                 className="ellipses pb-10"
@@ -90,7 +87,7 @@ const Community = ({
               </div>
               <Typography.H7 className="pt-12">Region-specific channels</Typography.H7>
               {socials && (
-                <div className="grid grid-cols-2 md:grid-cols-8 container-fluid mt-5">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 container-fluid mt-5 gap-4">
                   {socials[5]?.name === 'Telegram (Indonesia)' &&
                     <AltCard
                       title={"INDONESIAN"}
@@ -190,7 +187,7 @@ const Community = ({
             </div>
           </div>
 
-          <div className="team flex layout flex-col-reverse mt-10 md:flex-row max-w-screen-xl mx-auto">
+          <div className="team flex layout flex-col-reverse mt-10 pt-20 lg:flex-row max-w-screen-xl mx-auto">
             <div className="text-container px-6 mt-10 max-w-xl md:mr-12">
               <Typography.H3 className='font-bold'>A world-class team</Typography.H3>
               <div className="opacity-75 font-light mt-3 mb-9">
