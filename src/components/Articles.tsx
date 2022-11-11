@@ -96,13 +96,13 @@ const Articles = ({
   return (
     <>
       {loaded && currentPageArticles && (
-        <section className="stories light">
-          <div className="container-fluid max-w-screen-xl mx-auto mt-6 md:mb-28 px-6">
+        <section className="stories light px-3">
+          <div className="container-fluid max-w-screen-xl mx-auto mt-6 md:mb-28">
             <Category
               categories={categories}
               setCategory={setCurrentCategory}
             />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-11 max-w-screen-xl mx-auto px-6 md:px-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-11 max-w-screen-xl mx-auto">
               {currentPageArticles.map((a) => {
                 if (!currentCategory || currentCategory === a.category.slug) {
                   return (

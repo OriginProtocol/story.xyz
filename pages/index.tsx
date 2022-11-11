@@ -82,7 +82,7 @@ const Home = ({
                 </svg>
               </Typography.Link>
             </div>
-            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
+            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
               {
                 collections.map((collection) => (
                     <Card
@@ -117,7 +117,7 @@ const Home = ({
             <Typography.H3>
               Drops
             </Typography.H3>
-            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-10 mt-6">
+            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
               {
                 drops.map((collection) => (
                   <Card

@@ -57,7 +57,7 @@ const Blog = ({
       <section className="">
       <div className="mx-auto">
         <div className="flex flex-col px-7 py-12 max-w-screen-xl mx-auto">
-          <div className="flex flex-col mt-1 md:mt-10 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col mt-1 md:mt-10 md:flex-row md:items-center md:justify-between px-3">
             <Typography.H3 className='font-bold'>Latest stories</Typography.H3>
           </div>
           <News articles={articles} categories={categories} meta={meta} />
