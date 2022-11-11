@@ -62,7 +62,7 @@ const Community = ({
           </div>
           <div>
             <div className='max-w-screen-xl mx-auto pb-20 px-8 mt-20'>
-              <Typography.H3 className='mb-16 font-bold'>Community</Typography.H3>
+              <Typography.H3 className='mb-8 font-bold'>Community</Typography.H3>
               <div className='grid grid-cols-2 md:grid-cols-4 gap-4 container-fluid mt-5 mb-5'>
                 {socials && socials?.map((social) => {
                   if (social.name.indexOf(' ') < 0 && social.name !== 'Facebook') {

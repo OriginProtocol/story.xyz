@@ -71,15 +71,11 @@ const Home = ({
           <section className='relative z-10'>
             <div className='flex items-end'>
               <Typography.H5 as='h3'>
-                Collections
+                Marketplaces
               </Typography.H5>
               <Typography.Link className='ml-6 hidden md:flex items-center relative' style={{
                 bottom: '0.4rem',
               }}>
-                View all Collections
-                <svg width="9" height="10" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg" className='ml-1 relative' style={{top: '1px'}}>
-                  <path d="M2 1.857L7.5 6.96415L2 12.0713" stroke="#0074F0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
               </Typography.Link>
             </div>
             <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
