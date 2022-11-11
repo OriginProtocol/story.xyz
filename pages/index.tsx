@@ -70,9 +70,9 @@ const Home = ({
           </section>
           <section className='relative z-10'>
             <div className='flex items-end'>
-              <Typography.H3>
+              <Typography.H5 as='h3'>
                 Collections
-              </Typography.H3>
+              </Typography.H5>
               <Typography.Link className='ml-6 hidden md:flex items-center relative' style={{
                 bottom: '0.4rem',
               }}>
@@ -114,9 +114,9 @@ const Home = ({
             </div>
           </section>
           <section>
-            <Typography.H3>
+            <Typography.H5 as='h3'>
               Drops
-            </Typography.H3>
+            </Typography.H5>
             <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
               {
                 drops.map((collection) => (
