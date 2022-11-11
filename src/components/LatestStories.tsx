@@ -12,7 +12,7 @@ const LatestStories = ({
   return (
     <section className="bg-[#f6f8fe] md:mt-32">
       <div className="mx-auto">
-        <div className="flex flex-col px-7 py-12 max-w-screen-xl mx-auto md:py-32">
+        <div className="flex flex-col px-10 lg:px-7 py-12 max-w-screen-xl mx-auto md:py-32">
           <div className="flex flex-col mt-1 md:mt-10 md:flex-row md:items-center md:justify-between">
             <Typography.H3 className='font-bold'>Latest stories</Typography.H3>
             <Link href="/blog">

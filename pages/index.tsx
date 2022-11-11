@@ -150,7 +150,7 @@ const Home = ({
               </span>
             </div>
             <div className='mt-10 md:mt-20'>
-              <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20' href='mailto: partnerships@story.xyz' target='_blank' rel='noreferrer' />
+              <Button type='primary' webProperty='story' label='Talk to us' size='large' className='px-20 relative z-20' href='mailto: partnerships@story.xyz' target='_blank' rel='noreferrer' />
             </div>
           </section>
         </div>
