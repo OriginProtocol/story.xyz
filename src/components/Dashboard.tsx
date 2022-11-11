@@ -36,7 +36,7 @@ export default function Dashboard ({
                 <br className='hidden md:block' />
                 is
                 <br className='md:hidden' />
-                powered by Origin&apos;s&nbsp;
+                &nbsp;powered by Origin&apos;s&nbsp;
                 <br />
                 Native Token: OGN
               </h3>
