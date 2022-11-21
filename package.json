@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@originprotocol/origin-storybook": "^0.23.3",
+    "@originprotocol/origin-storybook": "^0.24.2",
     "@types/qs": "^6.9.7",
     "critters": "^0.0.16",
     "dotenv": "^16.0.2",
