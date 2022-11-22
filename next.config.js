@@ -13,12 +13,25 @@ const legacyAPIPaths = [
   '/mailing-list/:action*',
 ]
 
+// Map legacy routes to new ones here
+const legacyPageMappings = [
+  // [source, destination]
+  ['/tos', 'https://originprotocol.com/tos'],
+  ['/privacy', 'https://originprotocol.com/privacy'],
+]
+
 const legacyAPIRedirects = legacyAPIPaths.map(path => ({
   source: path,
   destination: `${NEXT_LEGACY_WEBSITE_HOST}${path}`,
   // For some weird reason, locale is enabled on API endpoints
   // on the legacy python stack
   // locale: false,
+  permanent: true
+}))
+
+const legacyPageRedirects = legacyPageMappings.map(([source, destination]) => ({
+  source,
+  destination,
   permanent: true
 }))
 
@@ -58,6 +71,15 @@ module.exports = {
   async redirects() {
     return [
       ...legacyAPIRedirects,
+      ...legacyPageRedirects,
     ]
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [{
+        source: '/sitemap.xml',
+        destination: `${process.env.STRAPI_API_URL}/website/sitemap`
+      }]
+    }
   },
 };
