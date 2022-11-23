@@ -87,10 +87,10 @@ export default function Dashboard ({
           <Typography.Body className='mt-6 text-center'>
             Earn 100% of all marketplace fees when you stake your OGN
           </Typography.Body>
-          <a href='https://story.xyz/staking' className='cursor-pointer w-full sm:hidden text-center px-10 py-4 mb-16 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB] relative z-20' target='_blank' rel='noreferrer'>
+          <a href='https://app.story.xyz/stake' className='cursor-pointer w-full sm:hidden text-center px-10 py-4 mb-16 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB] relative z-20' target='_blank' rel='noreferrer'>
             Earn Rewards
           </a>
-          <a href='https://story.xyz/staking' className='cursor-pointer hidden md:block w-64 text-center px-10 py-4 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB] relative z-20' target='_blank' rel='noreferrer'>
+          <a href='https://app.story.xyz/stake' className='cursor-pointer hidden md:block w-64 text-center px-10 py-4 mt-6 shadow rounded-full bg-gradient-to-r from-[#FA00FF] to-[#FED3AB] relative z-20' target='_blank' rel='noreferrer'>
             Earn Rewards
           </a>
           <div className='absolute' style={{right: 'calc(50% - 62rem)', top: '24rem'}}>
