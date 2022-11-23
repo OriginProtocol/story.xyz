@@ -8,7 +8,7 @@ class MyDocument extends Document {
         <Head>
           <link
             rel="shortcut icon"
-            href="/images/favicon.ico"
+            href="/favicon.ico"
             type="image/x-icon"
           />
         </Head>
