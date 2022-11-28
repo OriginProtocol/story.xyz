@@ -18,6 +18,7 @@ const legacyPageMappings = [
   // [source, destination]
   ['/tos', 'https://originprotocol.com/tos'],
   ['/privacy', 'https://originprotocol.com/privacy'],
+  ['/stake', 'https://app.story.xyz/stake']
 ]
 
 const legacyAPIRedirects = legacyAPIPaths.map(path => ({
