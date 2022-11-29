@@ -11,6 +11,7 @@ class MyDocument extends Document {
             href="/favicon.ico"
             type="image/x-icon"
           />
+          <script async type='text/javascript' src='/hash-router-redirect.js'></script>
         </Head>
         <body>
           <Main />
