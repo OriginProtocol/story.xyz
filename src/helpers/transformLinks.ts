@@ -7,6 +7,7 @@ type LinkSet<Link> = {
     highlightText?: string
     links: Link[]
     target: string
+    nofollow?: boolean
   }
 }
 
@@ -18,6 +19,7 @@ type Link<Icon> = {
   isHighlight: boolean
   icon?: Icon
   target: string
+  nofollow?: boolean
 }
 
 type Icon = {
@@ -43,6 +45,7 @@ const transformLinks = (links: LinkSet<Link<Icon>>[]) => {
       highlightText: linkSet.attributes.highlightText || null,
       order: linkSet.attributes.order,
       target: linkSet.attributes.target,
+      nofollow: linkSet.attributes.nofollow,
       links: linkSet.attributes.links.map((link) => {
         return {
           label: link.label,
@@ -50,6 +53,7 @@ const transformLinks = (links: LinkSet<Link<Icon>>[]) => {
           highlight: link.isHighlight,
           icon: link.icon?.data?.attributes || null,
           target: link.target,
+          nofollow: link.nofollow,
         }
       }).sort(sortOrder)
     }
