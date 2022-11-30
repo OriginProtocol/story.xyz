@@ -65,10 +65,10 @@ const transformCollections = (collections: Collection[]) => {
       body: collection.attributes.details.Card.description,
       linkText: collection.attributes.details.Card.linkDisplay,
       linkHref: collection.attributes.details.Card.linkURL,
-      img: collection.attributes.details.cover.data.attributes.url,
-      imgAlt: collection.attributes.details.cover.data.attributes.alternativeText,
-      thumbnail: collection.attributes.details.thumbnail.data.attributes.formats.thumbnail.url,
-      thumbnailAlt: collection.attributes.details.thumbnail.data.attributes.alternativeText
+      img: collection.attributes.details.cover.data?.attributes.url || '',
+      imgAlt: collection.attributes.details.cover.data?.attributes.alternativeText || '',
+      thumbnail: collection.attributes.details.thumbnail.data?.attributes.formats.thumbnail.url || '',
+      thumbnailAlt: collection.attributes.details.thumbnail.data?.attributes.alternativeText || '',
     }
   })
 }
