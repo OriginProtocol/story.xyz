@@ -127,7 +127,7 @@ const Article = ({
         </div>
       </div>
       </main>
-      <Footer />
+      <Footer webProperty="story" />
     </div>
   )
 };
