@@ -31,7 +31,7 @@ export function formatCurrencyAbbreviated(num: number, decimalDigits: number) {
     { value: 1e6, symbol: "M" },
   ];
   const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-  var item = lookup
+  const item = lookup
     .slice()
     .reverse()
     .find(function (item) {
@@ -143,7 +143,7 @@ export function checkValidInputForCoin(amount: string, coin: string) {
       throw new Error(`Unexpected stablecoin: ${coin}`);
   }
 
-  var regex = new RegExp(
+  const regex = new RegExp(
     `^((\\d{1,3})(?:[0-9]{3}){0,1}|(\\d{1})(?:[0-9]{3}){0,2}|(\\d{1,18}))((\\.)|(\\.\\d{1,${decimals}}))?$`,
     "g"
   );
