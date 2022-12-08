@@ -155,7 +155,7 @@ const Home = ({
         <LatestStories articles={articles} />
       </main>
       <div className='relative z-10'>
-        <Footer />
+        <Footer webProperty='story' />
       </div>
     </div>
   )
