@@ -12,7 +12,7 @@ const transformSeo = (seoRes: {
 }) => {
   if (!seoRes) return {}
 
-  let seo: SeoFormatted = {
+  const seo: SeoFormatted = {
     metaTitle: seoRes.metaTitle,
     metaDescription: seoRes.metaDescription,
     shareImage: seoRes.metaImage || null,
