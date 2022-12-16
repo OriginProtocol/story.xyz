@@ -35,7 +35,7 @@ const Error404 = ({ links }: {
       <Footer webProperty={'story'} />
       <style jsx>{`
         section.error {
-          background-image: url(/images/graphics/splines-404.png);
+          background-image: url(/splines-404.png);
           background-repeat: no-repeat;
           background-position: right bottom;
         }
