@@ -8,6 +8,7 @@ const transformSeo = (seoRes: {
   metaTitle: string
   structuredData: string
   metaViewport: string
+  canonicalURL: string
   metaSocial: MetaSocialRaw[]
 }) => {
   if (!seoRes) return {}
@@ -25,6 +26,10 @@ const transformSeo = (seoRes: {
 
   if (seoRes.metaViewport) {
     seo.metaViewport = seoRes.metaViewport;
+  }
+
+  if (seoRes.canonicalURL) {
+    seo.canonicalURL = seoRes.canonicalURL;
   }
 
   if (seoRes.metaSocial) {
