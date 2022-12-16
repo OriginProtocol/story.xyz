@@ -77,7 +77,7 @@ const Article = ({
               </div>
             </Link>
             <div className="mt-6 md:mt-12">
-              <Typography.H4 as="h1" className='text-[1.5rem] md:text-[2.75rem] leading-[2rem] md:leading-[3.75rem]'>{article.title}</Typography.H4>
+              <Typography.H4 as="h1" className='text-[1.5rem] md:!text-[2.75rem] leading-[2rem] md:!leading-[3.75rem]'>{article.title}</Typography.H4>
             </div>
             <div className="mt-3 md:!mt-6">
               <Typography.Body3 className='text-[0.875rem] md:text-[1rem] text-[#475569]'>
