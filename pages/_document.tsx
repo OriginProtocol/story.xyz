@@ -1,5 +1,6 @@
-import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import React from "react"
+import Document, { Html, Head, Main, NextScript } from "next/document"
+import { GTM_ID } from '../lib/gtm'
 
 class MyDocument extends Document {
   render() {
@@ -14,13 +15,16 @@ class MyDocument extends Document {
           <script async type='text/javascript' src='/hash-router-redirect.js'></script>
         </Head>
         <body>
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
           <Main />
           <NextScript />
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX" height="0" width="0" style="display: none; visibility: hidden;" />`,
-            }}
-          />
         </body>
       </Html>
     );
