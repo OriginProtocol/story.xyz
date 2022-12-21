@@ -42,7 +42,7 @@ const Article = ({
       url: string
       alternativeText: string
     },
-    published_at: string
+    publishedAt: string
     title: string
   },
   links: MappedLink<LinkFormatted<IconFormatted>>[]
@@ -97,7 +97,7 @@ const Article = ({
               >
                 <Image
                   src={imageUrl}
-                  alt={article.cover?.alternativeText}
+                  alt={article.cover?.alternativeText || ''}
                   width='0'
                   height='0'
                   sizes='100vw'

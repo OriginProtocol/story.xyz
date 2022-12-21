@@ -1,12 +1,11 @@
-import React from "react"
-import Link from 'next/link'
+/* eslint-disable react/no-unknown-property */
+import { Button, Footer, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
 import Head from "next/head"
-import { Typography, Button, Header, Footer, MappedLink, LinkFormatted, IconFormatted } from '@originprotocol/origin-storybook'
 import requestCmsData from '../src/requestCmsData'
 
 const Error404 = ({ links }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[],
-}) => { 
+}) => {
   return (
     <>
       <Head>
