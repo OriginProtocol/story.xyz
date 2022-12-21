@@ -11,16 +11,20 @@
   },
   "dependencies": {
     "@originprotocol/origin-storybook": "^0.26.1",
+    "@types/he": "^1.1.2",
     "@types/qs": "^6.9.7",
+    "@types/sanitize-html": "^2.8.0",
     "critters": "^0.0.16",
     "dotenv": "^16.0.2",
+    "he": "^1.2.0",
     "moment": "^2.29.4",
     "next": "12.3.0",
     "pullstate": "^1.24.0",
     "qs": "^6.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-moment": "^1.1.2"
+    "react-moment": "^1.1.2",
+    "sanitize-html": "^2.8.0"
   },
   "devDependencies": {
     "@types/node": "18.7.18",
