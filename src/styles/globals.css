@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.gradient-article {
+  background-image: -webkit-linear-gradient(top, #f6f8fe 50%, #ffffff 50%);
+}
+
 .gradient-404 {
   background-image: -webkit-linear-gradient(left,#CB6FDE,#5C2EFF,#0074F0);
   -webkit-background-clip: text;
