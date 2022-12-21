@@ -1,79 +1,87 @@
 type Collection = {
-  id: number,
+  id: number;
   attributes: {
     details: {
-      id: number,
+      id: number;
       Card: {
-        id: number,
-        title: string,
-        description: string,
-        linkDisplay: string,
-        linkURL: string
-      },
+        id: number;
+        title: string;
+        description: string;
+        linkDisplay: string;
+        linkURL: string;
+      };
       cover: {
         data: {
           attributes: {
-            name: string
-            alternativeText: string
-            caption: string
-            width: string
-            height: string
+            name: string;
+            alternativeText: string;
+            caption: string;
+            width: string;
+            height: string;
             formats: {
               large: {
-                url: string
-              }
+                url: string;
+              };
               medium: {
-                url: string
-              }
+                url: string;
+              };
               small: {
-                url: string
-              }
+                url: string;
+              };
               thumbnail: {
-                url: string
-              }
-            }
-            url: string
-          }
-        }
-      }
+                url: string;
+              };
+            };
+            url: string;
+          };
+        };
+      };
       thumbnail: {
         data: {
           attributes: {
-            name: string
-            alternativeText: string
-            caption: string
-            width: string
-            height: string
+            name: string;
+            alternativeText: string;
+            caption: string;
+            width: string;
+            height: string;
             formats: {
               thumbnail: {
-                url: string
-              }
-            }
-            url: string
-          }
-        }
-      }
-    }
-  }
-}
+                url: string;
+              };
+            };
+            url: string;
+          };
+        };
+      };
+    };
+  };
+};
 
 const transformCollections = (collections: Collection[]) => {
+  if (!collections) return [];
+
   return collections.map((collection) => {
     return {
-      webProperty: 'story',
+      webProperty: "story",
       title: collection.attributes.details.Card.title,
       body: collection.attributes.details.Card.description,
       linkText: collection.attributes.details.Card.linkDisplay,
       linkHref: collection.attributes.details.Card.linkURL,
-      img: collection.attributes.details.cover.data?.attributes.url || '',
-      imgAlt: collection.attributes.details.cover.data?.attributes.alternativeText || '',
-      thumbnail: collection.attributes.details.thumbnail.data?.attributes.formats.thumbnail.url || '',
-      thumbnailAlt: collection.attributes.details.thumbnail.data?.attributes.alternativeText || '',
-    }
-  })
-}
+      img: collection.attributes.details.cover.data?.attributes.url || "",
+      imgAlt:
+        collection.attributes.details.cover.data?.attributes.alternativeText ||
+        "",
+      thumbnail:
+        collection.attributes.details.thumbnail.data?.attributes.formats
+          .thumbnail.url || "",
+      thumbnailAlt:
+        collection.attributes.details.thumbnail.data?.attributes
+          .alternativeText || "",
+    };
+  });
+};
 
-export default transformCollections
+export default transformCollections;
 
 /*
 {
