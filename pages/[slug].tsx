@@ -7,7 +7,7 @@ import styles from "../src/styles/Article.module.css";
 import { fetchAPI } from "../src/helpers/fetchApi";
 import requestCms from "../src/requestCmsData";
 import transformSeo from "../src/helpers/transformSeo";
-import { SeoFormatted } from "../src/components/types";
+import { Article, SeoFormatted } from "../src/components/types";
 import Seo from "../src/components/Seo";
 import sanitizeHtml from 'sanitize-html'
 import he from 'he'
@@ -44,6 +44,7 @@ const Article = ({
     },
     publishedAt: string
     title: string
+    publishBackdate?: string
   },
   links: MappedLink<LinkFormatted<IconFormatted>>[]
   seo: SeoFormatted
@@ -81,7 +82,7 @@ const Article = ({
             </div>
             <div className="mt-3 md:!mt-6">
               <Typography.Body3 className='text-[0.875rem] md:text-[1rem] text-[#475569]'>
-                <Moment format="MMMM D YYYY">{article.publishedAt}</Moment>
+                <Moment format="MMMM D YYYY">{article.publishBackdate || article.publishedAt}</Moment>
               </Typography.Body3>
             </div>
           </div>
@@ -174,9 +175,11 @@ export async function getStaticProps({
     };
   }
 
+  const sortedData = data.sort((a: Article, b: Article) => (b.publishBackdate || b.publishedAt).localeCompare(a.publishBackdate || a.publishedAt));
+
   return {
     props: {
-      article: data,
+      article: sortedData,
       links,
       seo: transformSeo(data.seo)
     },

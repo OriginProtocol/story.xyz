@@ -84,11 +84,12 @@ export async function getStaticProps () {
   } = {};
 
   articles.forEach((article) => {
-
     if (article && article.category) {
       categories[article.category.slug] = article.category;
     }
   });
+
+  const sortedArticles = articles.sort((a: Article, b: Article) => (b.publishBackdate || b.publishedAt).localeCompare(a.publishBackdate || a.publishedAt));
 
   const categoryList = Object.values(categories)
 
@@ -99,7 +100,7 @@ export async function getStaticProps () {
       drops,
       ognInfo,
       socials: socials.stats,
-      articles,
+      articles: sortedArticles,
       categories: categoryList,
       meta,
       seo: transformSeo(seoRes.data),
