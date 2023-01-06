@@ -89,13 +89,19 @@ export const getDrops = async () => {
 }
 
 export const getArticles: () => Promise<[Article[], Meta]> = async () => {
+  const params = qs.stringify({
+    pagination: {
+      pageSize: 1000
+    }
+  })
+
   const data = await fetch(
-    `${apiUrl}/story/blog/en`, {
+    `${apiUrl}/story/blog/en?${params}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
-      }
+      },
     }
   )
 

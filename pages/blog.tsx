@@ -1,17 +1,13 @@
-import { Button, Card, CardProps, Footer, GradientText, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
+import { CardProps, Footer, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
 import Head from 'next/head'
-import Image from 'next/future/image'
-import Dashboard from '../src/components/Dashboard'
+import News from '../src/components/Articles'
+import { Social } from '../src/components/Community'
+import Seo from '../src/components/Seo'
+import { Article, Meta, SeoFormatted } from '../src/components/types'
+import { fetchAPI } from '../src/helpers/fetchApi'
+import transformSeo from '../src/helpers/transformSeo'
 import requestCmsData from '../src/requestCmsData'
 import requestOgnData from '../src/requestOgnData'
-import styles from '../src/styles/Home.module.css'
-import Community, { Social } from '../src/components/Community'
-import LatestStories from '../src/components/LatestStories'
-import { Article, Meta, SeoFormatted } from '../src/components/types'
-import News from '../src/components/Articles'
-import transformSeo from '../src/helpers/transformSeo'
-import { fetchAPI } from '../src/helpers/fetchApi'
-import Seo from '../src/components/Seo'
 
 interface CollectionProps extends CardProps {
   img: string
@@ -84,11 +80,12 @@ export async function getStaticProps () {
   } = {};
 
   articles.forEach((article) => {
-
     if (article && article.category) {
       categories[article.category.slug] = article.category;
     }
   });
+
+  const sortedArticles = articles.sort((a: Article, b: Article) => (b.publishBackdate || b.publishedAt).localeCompare(a.publishBackdate || a.publishedAt));
 
   const categoryList = Object.values(categories)
 
@@ -99,7 +96,7 @@ export async function getStaticProps () {
       drops,
       ognInfo,
       socials: socials.stats,
-      articles,
+      articles: sortedArticles,
       categories: categoryList,
       meta,
       seo: transformSeo(seoRes.data),

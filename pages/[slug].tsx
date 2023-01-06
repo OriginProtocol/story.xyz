@@ -44,6 +44,7 @@ const Article = ({
     },
     publishedAt: string
     title: string
+    publishBackdate?: string
   },
   links: MappedLink<LinkFormatted<IconFormatted>>[]
   seo: SeoFormatted
@@ -81,7 +82,7 @@ const Article = ({
             </div>
             <div className="mt-3 md:!mt-6">
               <Typography.Body3 className='text-[0.875rem] md:text-[1rem] text-[#475569]'>
-                <Moment format="MMMM D YYYY">{article.publishedAt}</Moment>
+                <Moment format="MMMM D YYYY">{article.publishBackdate || article.publishedAt}</Moment>
               </Typography.Body3>
             </div>
           </div>

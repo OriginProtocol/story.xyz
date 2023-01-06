@@ -14,6 +14,8 @@ export type Article = {
     name: string;
     slug: string;
   };
+  publishBackdate?: string;
+  publishedAt: string;
 };
 
 type MetaSocial = {
