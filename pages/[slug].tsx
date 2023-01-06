@@ -7,7 +7,7 @@ import styles from "../src/styles/Article.module.css";
 import { fetchAPI } from "../src/helpers/fetchApi";
 import requestCms from "../src/requestCmsData";
 import transformSeo from "../src/helpers/transformSeo";
-import { Article, SeoFormatted } from "../src/components/types";
+import { SeoFormatted } from "../src/components/types";
 import Seo from "../src/components/Seo";
 import sanitizeHtml from 'sanitize-html'
 import he from 'he'
@@ -175,11 +175,9 @@ export async function getStaticProps({
     };
   }
 
-  const sortedData = data.sort((a: Article, b: Article) => (b.publishBackdate || b.publishedAt).localeCompare(a.publishBackdate || a.publishedAt));
-
   return {
     props: {
-      article: sortedData,
+      article: data,
       links,
       seo: transformSeo(data.seo)
     },
