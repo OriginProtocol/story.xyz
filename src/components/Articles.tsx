@@ -96,6 +96,11 @@ const Articles = ({
     setPageNumbers(pageNumbers);
   }, [page, articlePages]);
 
+  const setCategoryAndPage: React.Dispatch<React.SetStateAction<string>> = (cat) => {
+    setPage(1)
+    setCurrentCategory(cat)
+  }
+
   return (
     <>
       {loaded && currentPageArticles && (
@@ -103,7 +108,7 @@ const Articles = ({
           <div className="container-fluid max-w-screen-xl mx-auto mt-6 md:mb-28">
             <Category
               categories={categories}
-              setCategory={setCurrentCategory}
+              setCategory={setCategoryAndPage}
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-11 max-w-screen-xl mx-auto">
               {currentPageArticles.map((a) => {
