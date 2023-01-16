@@ -2,6 +2,7 @@ import { Card, Typography } from '@originprotocol/origin-storybook'
 import Image from 'next/future/image'
 import Link from 'next/link'
 import React from 'react'
+import Moment from 'react-moment'
 import { Article } from './types'
 
 const LatestStories = ({
@@ -39,7 +40,7 @@ const LatestStories = ({
                       width='640' height='312'
                     />
                   }
-                  body={article.description}
+                  body={<Moment format="MMMM D, YYYY">{article.publishBackdate || article.publishedAt}</Moment>}
                   linkText={"Read more"}
                   linkHref={`/${article.slug}`}
                 />
