@@ -77,8 +77,8 @@ const Articles = ({
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
 
   const articlePages = Math.ceil(
-    (currentCategory
-      ? articles.filter((article) => article.slug === currentCategory).length
+    (currentCategory.length > 0
+      ? articles.filter((article) => article.category.slug === currentCategory).length
       : meta.pagination.total) / 9
   );
 
