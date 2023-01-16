@@ -15,8 +15,6 @@ const Category = ({
   }[],
   setCategory: React.Dispatch<React.SetStateAction<string>>
 }) => {
-  const [open, setOpen] = useState(false);
-  //const categories = ['All news', 'News', 'Food', 'Nature', 'Tech', 'Story']
   const capitalize = (name: string) => {
     return name.slice(0, 1).toUpperCase() + name.slice(1, name.length);
   };
@@ -24,7 +22,7 @@ const Category = ({
   const categoriesFormatted: {
     id: number | null,
     name: string,
-    unavailable: boolean
+    unavailable: boolean,
   }[] = categories.map((category, index) => {
     return {
       id: index,
@@ -45,8 +43,10 @@ const Category = ({
         label={''}
         options={categoriesFormatted}
         onSelect={(value) => {
-          if (value && value.id) {
-            setCategory(value.id.toString());
+          if (value && value.id !== null) {
+            setCategory(categories[value.id].slug);
+          } else {
+            setCategory('')
           }
         }}
       />
@@ -81,8 +81,9 @@ const Articles = ({
       ? articles.filter((article) => article.slug === currentCategory).length
       : meta.pagination.total) / 9
   );
+
   const currentPageArticles = articles
-    ? articles.slice(9 * (page - 1), 9 * page)
+    ? articles.filter((article) => currentCategory.length === 0 ? true : article.category.slug === currentCategory).slice(9 * (page - 1), 9 * page)
     : [];
 
   useEffect(() => {

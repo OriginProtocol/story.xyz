@@ -1,6 +1,6 @@
 import { CardProps, Footer, Header, IconFormatted, LinkFormatted, MappedLink, Typography } from '@originprotocol/origin-storybook'
 import Head from 'next/head'
-import News from '../src/components/Articles'
+import Articles from '../src/components/Articles'
 import { Social } from '../src/components/Community'
 import Seo from '../src/components/Seo'
 import { Article, Meta, SeoFormatted } from '../src/components/types'
@@ -56,7 +56,7 @@ const Blog = ({
           <div className="flex flex-col mt-1 md:mt-10 md:flex-row md:items-center md:justify-between px-3">
             <Typography.H3 className='font-bold'>Latest stories</Typography.H3>
           </div>
-          <News articles={articles} categories={categories} meta={meta} />
+          <Articles articles={articles} categories={categories} meta={meta} />
         </div>
       </div>
     </section>
