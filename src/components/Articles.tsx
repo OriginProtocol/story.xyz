@@ -2,6 +2,7 @@
 import { Card, Select } from "@originprotocol/origin-storybook";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Moment from "react-moment";
 import { Article, Meta } from "./types";
 
 const Category = ({
@@ -14,8 +15,6 @@ const Category = ({
   }[],
   setCategory: React.Dispatch<React.SetStateAction<string>>
 }) => {
-  const [open, setOpen] = useState(false);
-  //const categories = ['All news', 'News', 'Food', 'Nature', 'Tech', 'Story']
   const capitalize = (name: string) => {
     return name.slice(0, 1).toUpperCase() + name.slice(1, name.length);
   };
@@ -23,7 +22,7 @@ const Category = ({
   const categoriesFormatted: {
     id: number | null,
     name: string,
-    unavailable: boolean
+    unavailable: boolean,
   }[] = categories.map((category, index) => {
     return {
       id: index,
@@ -44,8 +43,10 @@ const Category = ({
         label={''}
         options={categoriesFormatted}
         onSelect={(value) => {
-          if (value && value.id) {
-            setCategory(value.id.toString());
+          if (value && value.id !== null) {
+            setCategory(categories[value.id].slug);
+          } else {
+            setCategory('')
           }
         }}
       />
@@ -80,8 +81,9 @@ const Articles = ({
       ? articles.filter((article) => article.slug === currentCategory).length
       : meta.pagination.total) / 9
   );
+
   const currentPageArticles = articles
-    ? articles.slice(9 * (page - 1), 9 * page)
+    ? articles.filter((article) => currentCategory.length === 0 ? true : article.category.slug === currentCategory).slice(9 * (page - 1), 9 * page)
     : [];
 
   useEffect(() => {
@@ -111,7 +113,7 @@ const Articles = ({
                       webProperty={"originprotocol"}
                       title={a.title}
                       img={<Image src={ a.cardCover?.url || a.cover?.url || '/images/logos/origin-press.svg'} alt={a.cover?.alternativeText} width='640' height='312' />}
-                      body={a.description}
+                      body={<Moment format="MMMM D, YYYY">{a.publishBackdate || a.publishedAt}</Moment>}
                       linkText={"Read more"}
                       linkHref={`/${a.slug}`}
                       key={a.title}
