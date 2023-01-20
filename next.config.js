@@ -114,6 +114,9 @@ module.exports = {
       beforeFiles: [{
         source: '/sitemap.xml',
         destination: `${process.env.STRAPI_API_URL}/website/sitemap`
+      }, {
+        source: '/robots.txt',
+        destination: APP_ENV === 'prod' ? '/robots.prod.txt' : '/robots.staging.txt',
       }]
     }
   },
