@@ -121,6 +121,7 @@ const Articles = ({
                       body={<Moment format="MMMM D, YYYY">{a.publishBackdate || a.publishedAt}</Moment>}
                       linkText={"Read more"}
                       linkHref={`/${a.slug}`}
+                      target='_self'
                       key={a.title}
                     />
                   );
