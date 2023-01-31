@@ -168,6 +168,8 @@ export async function getStaticProps () {
   const socials = await socialRes.json();
   const seoRes = await fetchAPI("/story/page/en/%2F");
 
+  const sortedArticles = articles.sort((a: Article, b: Article) => (b.publishBackdate || b.publishedAt).localeCompare(a.publishBackdate || a.publishedAt));
+
   return {
     props: {
       links,
@@ -175,7 +177,7 @@ export async function getStaticProps () {
       drops,
       ognInfo,
       socials: socials.stats,
-      articles,
+      articles: sortedArticles,
       seo: transformSeo(seoRes.data)
     },
     revalidate: 5 * 60, // revalidate every 5 minutes
