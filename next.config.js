@@ -1,6 +1,6 @@
 const locales = require('./locales');
 
-const { NEXT_LEGACY_WEBSITE_HOST } = process.env
+const { NEXT_LEGACY_WEBSITE_HOST, APP_ENV } = process.env
 
 // API endpoints that should be forwarded to the legacy site
 const legacyAPIPaths = [
