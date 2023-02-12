@@ -1,6 +1,5 @@
 import {
   Button,
-  Card,
   CardProps,
   Footer,
   GradientText,
@@ -12,11 +11,11 @@ import {
 } from "@originprotocol/origin-storybook";
 import Head from "next/head";
 import Image from "next/future/image";
+import numeral from "numeral";
 import requestCmsData from "../src/requestCmsData";
 import requestOgnData from "../src/requestOgnData";
 import styles from "../src/styles/Home.module.css";
-import Community, { Social } from "../src/components/Community";
-import LatestStories from "../src/components/LatestStories";
+import { Social } from "../src/components/Community";
 import { Article, SeoFormatted } from "../src/components/types";
 import { fetchAPI } from "../src/helpers/fetchApi";
 import transformSeo from "../src/helpers/transformSeo";
@@ -41,18 +40,105 @@ interface CollectionProps extends CardProps {
   thumbnailAlt?: string;
 }
 
+const PriceChangeIndicator = ({
+  change,
+  className = "",
+}: {
+  change: number;
+  className?: string;
+}) => {
+  return (
+    <div
+      className={`${className} text-sm ${
+        change > 0 ? "bg-green-price-change" : "bg-red-price-change"
+      } text-right p-1 rounded-md`}
+    >
+      <Typography.Body
+        className={
+          change > 0
+            ? "text-green-price-change-dark"
+            : "text-red-price-change-dark"
+        }
+      >
+        {change > 0 ? "▲" : "▼"} {change}%
+      </Typography.Body>
+    </div>
+  );
+};
+
+const formatEth = (eth: number) => numeral(eth).format("0.00a");
+const formatOgn = (ogn: number) => numeral(ogn).format("0a");
+
 const TokenStats = ({
   circulatingOgn,
   totalOgn,
   ognPrice,
+  ognDeposited,
+  ethInRewardsPool,
+  ognInRewardsPool,
 }: {
   circulatingOgn: number;
   totalOgn: number;
   ognPrice: number;
+  ognDeposited: number;
+  ethInRewardsPool: number;
+  ognInRewardsPool: number;
 }) => {
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-      <Typography.H5 as="h3">Marketplaces</Typography.H5>
+    <div className="px-9 py-24 relative overflow-hidden bg-blue-stats">
+      <div className="flex flex-wrap md:max-w-screen-xl">
+        <div className="w-full md:w-1/2">
+          <div className="flex gap-4">
+            <OgnLogo size={40} className="sm:hidden block" />
+            <OgnLogo className="hidden sm:block" />
+            <Typography.H3 className=" text-white">
+              Origin Token <span className="text-xs sm:text-2xl">(OGN)</span>
+            </Typography.H3>
+          </div>
+          <Typography.Body className="text-white text-xl mt-4 hidden sm:block">
+            OGN is the governance token for the Origin Story platform and can be
+            staked for ETH rewards.
+          </Typography.Body>
+          <a href="#" className="text-white text-md mt-3 hidden sm:block">
+            Add to wallet +
+          </a>
+        </div>
+        <div className="w-full md:w-1/2 mt-8 sm:mt-0 flex flex-wrap">
+          <div className="grid grid-cols-1 justify-items-start sm:justify-items-end gap-2">
+            <Typography.H3 className="text-white">${ognPrice}</Typography.H3>
+            <PriceChangeIndicator change={2.3} />
+            <Typography.Body className="text-sm lg:text-md mt-1 text-gray-stats uppercase">
+              Rewards Pool
+            </Typography.Body>
+            <Typography.Body className="text-sm lg:text-md mt-1 text-white">
+              {formatEth(ethInRewardsPool)} ETH + {formatOgn(ognInRewardsPool)}{" "}
+              OGN
+            </Typography.Body>
+          </div>
+          <div className="grid gap-y-3 gap-x-5 text-center grid-cols-2 sm:grid-cols-1">
+            <Button
+              type="primary"
+              webProperty="story"
+              label="Buy OGN"
+              className="font-normal text-base md:text-md from-white to-white text-gray-900 px-8"
+              size="medium"
+              href="mailto: partnerships@story.xyz"
+              target="_blank"
+              rel="noreferrer"
+            />
+            <Button
+              type="primary"
+              webProperty="story"
+              label="Stake OGN"
+              className="from-pink-600 to-rose-300 font-normal text-base md:text-md px-8"
+              size="medium"
+              href="https://app.story.xyz/stake"
+              target="_blank"
+              rel="noreferrer"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -169,15 +255,33 @@ const WhereToBuy = () => {
   );
 };
 
-const EthLogo = () => {
+const EthLogo = ({ className = "" }: { className?: string }) => {
   return (
-    <Image src="/eth-logo.svg" width="60" height="60" alt="Ethereum logo" />
+    <Image
+      src="/eth-logo.svg"
+      width="60"
+      height="60"
+      alt="Ethereum logo"
+      className={className}
+    />
   );
 };
 
-const OgnLogo = () => {
+const OgnLogo = ({
+  className = "",
+  size = 60,
+}: {
+  className?: string;
+  size?: number;
+}) => {
   return (
-    <Image src="/origin-logo.svg" width="60" height="60" alt="Origin logo" />
+    <Image
+      src="/origin-logo.svg"
+      width={size}
+      height={size}
+      alt="Origin logo"
+      className={className}
+    />
   );
 };
 
@@ -191,11 +295,11 @@ const RewardsPool = ({
   logo?: React.ReactNode;
 }) => {
   return (
-    <div className="border border-white rounded-md w-full sm:w-5/12 lg:w-96 px-6 py-6 bg-white bg-opacity-10 text-left">
+    <div className="border border-white rounded-md w-full sm:w-5/12 lg:w-96 px-6 py-6 bg-white bg-opacity-10 text-center sm:text-left">
       <Typography.Body2 className="text-white uppercase">
         {title}
       </Typography.Body2>
-      <div className="text-white flex justify-items-center gap-4">
+      <div className="text-white flex gap-4 justify-center sm:justify-start uppercase">
         {logo}
         <Typography.H1>{amount}</Typography.H1>
       </div>
@@ -203,12 +307,17 @@ const RewardsPool = ({
   );
 };
 
-const StakeCTA = ({ ognDeposited, ethInRewardsPool, ognInRewardsPool }) => {
+const StakeCTA = ({
+  ognDeposited,
+  ethInRewardsPool,
+  ognInRewardsPool,
+}: {
+  ognDeposited: number;
+  ethInRewardsPool: number;
+  ognInRewardsPool: number;
+}) => {
   return (
-    <div
-      className="px-9 py-24 text-center relative overflow-hidden"
-      style={{ backgroundColor: "#0074F0" }}
-    >
+    <div className="px-5 md:px-9 py-24 text-center relative overflow-hidden bg-blue-stats">
       <Typography.H2 className=" text-white">Stake OGN</Typography.H2>
       <Typography.H2>
         <GradientText
@@ -224,12 +333,12 @@ const StakeCTA = ({ ognDeposited, ethInRewardsPool, ognInRewardsPool }) => {
       <div className="flex flex-wrap items-center justify-center my-14 gap-2">
         <RewardsPool
           title="Total ETH in rewards pool"
-          amount={ethInRewardsPool}
+          amount={formatEth(ethInRewardsPool)}
           logo={<EthLogo />}
         />
         <RewardsPool
           title="Total OGN in rewards pool"
-          amount={ognInRewardsPool}
+          amount={formatOgn(ognInRewardsPool)}
           logo={<OgnLogo />}
         />
       </div>
@@ -239,7 +348,7 @@ const StakeCTA = ({ ognDeposited, ethInRewardsPool, ognInRewardsPool }) => {
       </Typography.Body2>
 
       <Typography.H3 className="text-white mt-2 mb-16">
-        {ognDeposited}
+        {numeral(ognDeposited).format("0,0")}
       </Typography.H3>
       <Button
         type="primary"
@@ -323,14 +432,20 @@ const ExcludedWallets = () => {
               <tr key={wallet.name}>
                 <td className="p-2">
                   <Typography.Body className="font-bold">
-                    <a href={`https://etherscan.io/address/${wallet.address}`}>
+                    <a
+                      href={`https://etherscan.io/address/${wallet.address}`}
+                      className="hover:underline"
+                    >
                       {wallet.name}
                     </a>
                   </Typography.Body>
                 </td>
                 <td className="p-2 hidden md:table-cell">
                   <Typography.Body>
-                    <a href={`https://etherscan.io/address/${wallet.address}`}>
+                    <a
+                      href={`https://etherscan.io/address/${wallet.address}`}
+                      className="hover:underline text-blue-600 hover:text-blue-800 text-sm"
+                    >
                       {wallet.address}
                     </a>
                   </Typography.Body>
@@ -352,8 +467,6 @@ const Dashboard = ({
   collections,
   drops,
   ognInfo,
-  socials,
-  articles,
   seo,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[];
@@ -369,6 +482,12 @@ const Dashboard = ({
   seo: SeoFormatted;
 }) => {
   console.log(ognInfo);
+  const rewardsInfo = {
+    ognDeposited: 94345435,
+    ethInRewardsPool: 53.6554,
+    ognInRewardsPool: 215343,
+  };
+
   return (
     <div className="relative overflow-hidden">
       <Head>
@@ -383,16 +502,13 @@ const Dashboard = ({
       <Header webProperty="story" mappedLinks={links} />
 
       <main style={{ backgroundColor: "#F6F8FE" }}>
-        <div className="max-w-screen-xl mx-auto px-9">
+        <TokenStats {...ognInfo} {...rewardsInfo} />
+        <div className="max-w-screen-xl mx-auto sm:px-9 px-0">
           <section className="mb-24 relative">
             <WhereToBuy />
           </section>
         </div>
-        <StakeCTA
-          ognDeposited="94,345,435"
-          ethInRewardsPool="53.65"
-          ognInRewardsPool="215K"
-        />
+        <StakeCTA {...rewardsInfo} />
         <ExcludedWallets />
       </main>
       <div className="relative z-10">
@@ -403,19 +519,9 @@ const Dashboard = ({
 };
 
 export async function getStaticProps() {
-  const { links, collections, drops, articles } = await requestCmsData();
+  const { links, collections, drops } = await requestCmsData();
   const ognInfo = await requestOgnData();
-  const socialRes = await fetch(
-    `${process.env.NEXT_LEGACY_WEBSITE_HOST}/social-stats`
-  );
-  const socials = await socialRes.json();
   const seoRes = await fetchAPI("/story/page/en/%2F");
-
-  const sortedArticles = articles.sort((a: Article, b: Article) =>
-    (b.publishBackdate || b.publishedAt).localeCompare(
-      a.publishBackdate || a.publishedAt
-    )
-  );
 
   return {
     props: {
@@ -423,8 +529,6 @@ export async function getStaticProps() {
       collections,
       drops,
       ognInfo,
-      socials: socials.stats,
-      articles: sortedArticles,
       seo: transformSeo(seoRes.data),
     },
     revalidate: 5 * 60, // revalidate every 5 minutes
