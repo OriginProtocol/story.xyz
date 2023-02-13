@@ -17,11 +17,14 @@ import TokenStats from "../src/components/dashboard/TokenStats";
 import WhereToBuy from "../src/components/dashboard/WhereToBuy";
 import StakeCTA from "../src/components/dashboard/StakeCTA";
 import ExcludedWallets from "../src/components/dashboard/ExcludedWallets";
+import { requestGovernanceWalletBalances } from "../src/requestGovernanceWalletBalances";
+import { Wallet } from "../src/helpers/excludedWallets";
 
 const Dashboard = ({
   links,
   ognInfo,
   seo,
+  walletBalances,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[];
   ognInfo: {
@@ -31,6 +34,7 @@ const Dashboard = ({
     marketCap: number;
     ogn24hChange: number;
   };
+  walletBalances: Wallet[];
   seo: SeoFormatted;
 }) => {
   const rewardsInfo = {
@@ -51,7 +55,6 @@ const Dashboard = ({
       </Head>
       <Seo seo={seo} />
       <Header webProperty="story" mappedLinks={links} />
-
       <main style={{ backgroundColor: "#F6F8FE" }}>
         <TokenStats {...ognInfo} {...rewardsInfo} />
         <div className="max-w-screen-xl mx-auto sm:px-9 px-0">
@@ -60,7 +63,7 @@ const Dashboard = ({
           </section>
         </div>
         <StakeCTA {...rewardsInfo} />
-        <ExcludedWallets />
+        <ExcludedWallets walletBalances={walletBalances} />
       </main>
       <div className="relative z-10">
         <Footer webProperty="story" />
@@ -73,11 +76,13 @@ export async function getStaticProps() {
   const { links } = await requestCmsData();
   const ognInfo = await requestOgnData();
   const seoRes = await fetchAPI("/story/page/en/%2F");
+  const walletBalances = await requestGovernanceWalletBalances();
 
   return {
     props: {
       links,
       ognInfo,
+      walletBalances,
       seo: transformSeo(seoRes.data),
     },
     revalidate: 5 * 60, // revalidate every 5 minutes
