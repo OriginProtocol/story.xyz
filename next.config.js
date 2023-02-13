@@ -1,6 +1,6 @@
 const locales = require('./locales');
 
-const { NEXT_LEGACY_WEBSITE_HOST } = process.env
+const { NEXT_LEGACY_WEBSITE_HOST, APP_ENV } = process.env
 
 // API endpoints that should be forwarded to the legacy site
 const legacyAPIPaths = [
@@ -114,6 +114,9 @@ module.exports = {
       beforeFiles: [{
         source: '/sitemap.xml',
         destination: `${process.env.STRAPI_API_URL}/website/sitemap`
+      }, {
+        source: '/robots.txt',
+        destination: APP_ENV === 'prod' ? '/robots.prod.txt' : '/robots.staging.txt',
       }]
     }
   },
