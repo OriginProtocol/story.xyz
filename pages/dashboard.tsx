@@ -47,27 +47,38 @@ const PriceChangeIndicator = ({
   change: number;
   className?: string;
 }) => {
+  const colorClass =
+    change > 0 ? "text-green-price-change-dark" : "text-red-price-change-dark";
+
   return (
     <div
       className={`${className} text-sm ${
         change > 0 ? "bg-green-price-change" : "bg-red-price-change"
-      } text-right p-1 rounded-md`}
+      } text-right py-0.5 px-1 rounded-md`}
     >
-      <Typography.Body
-        className={
-          change > 0
-            ? "text-green-price-change-dark"
-            : "text-red-price-change-dark"
-        }
-      >
+      <Typography.Body className={`${colorClass} text-sm`}>
         {change > 0 ? "▲" : "▼"} {change}%
       </Typography.Body>
     </div>
   );
 };
 
-const formatEth = (eth: number) => numeral(eth).format("0.00a");
-const formatOgn = (ogn: number) => numeral(ogn).format("0a");
+const formatNum = (val: number) => numeral(val).format("0,"); //123,456,789
+const formatEth = (eth: number) => numeral(eth).format("0.00a"); //123.45k
+const formatOgn = (ogn: number) => numeral(ogn).format("0a"); //123k
+const formatUSD = (usd: number) => numeral(usd).format("0,"); //123,456,789
+
+const StatHeading = ({ title }: { title: string }) => (
+  <Typography.Body className="text-sm lg:text-md text-gray-stats uppercase font-bold">
+    {title}
+  </Typography.Body>
+);
+
+const AddToWallet = ({ className }: { className?: string }) => (
+  <a href="#" className={`text-white text-md mt-3 ${className}`}>
+    Add to wallet +
+  </a>
+);
 
 const TokenStats = ({
   circulatingOgn,
@@ -85,8 +96,8 @@ const TokenStats = ({
   ognInRewardsPool: number;
 }) => {
   return (
-    <div className="px-9 py-24 relative overflow-hidden bg-blue-stats">
-      <div className="flex flex-wrap md:max-w-screen-xl">
+    <div className="px-9 sm:py-24 py-8 bg-blue-stats">
+      <div className="flex flex-wrap md:max-w-screen-xl justify-items-start mx-auto">
         <div className="w-full md:w-1/2">
           <div className="flex gap-4">
             <OgnLogo size={40} className="sm:hidden block" />
@@ -99,18 +110,14 @@ const TokenStats = ({
             OGN is the governance token for the Origin Story platform and can be
             staked for ETH rewards.
           </Typography.Body>
-          <a href="#" className="text-white text-md mt-3 hidden sm:block">
-            Add to wallet +
-          </a>
+          <AddToWallet className="hidden sm:block" />
         </div>
-        <div className="w-full md:w-1/2 mt-8 sm:mt-0 flex flex-wrap">
-          <div className="grid grid-cols-1 justify-items-start sm:justify-items-end gap-2">
+        <div className="w-full md:w-1/2 mt-8 sm:mt-0 flex flex-wrap sm:justify-end justify-start items-start gap-6">
+          <div className="grid grid-cols-1 justify-items-start sm:justify-items-end">
             <Typography.H3 className="text-white">${ognPrice}</Typography.H3>
-            <PriceChangeIndicator change={2.3} />
-            <Typography.Body className="text-sm lg:text-md mt-1 text-gray-stats uppercase">
-              Rewards Pool
-            </Typography.Body>
-            <Typography.Body className="text-sm lg:text-md mt-1 text-white">
+            <PriceChangeIndicator change={2.3} className="mt-1 mb-3" />
+            <StatHeading title="Rewards Pool" />
+            <Typography.Body className="text-sm lg:text-md text-white">
               {formatEth(ethInRewardsPool)} ETH + {formatOgn(ognInRewardsPool)}{" "}
               OGN
             </Typography.Body>
@@ -139,9 +146,34 @@ const TokenStats = ({
           </div>
         </div>
       </div>
+      <AddToWallet className="sm:hidden text-center block mt-8" />
+      <div className="flex sm:flex-row flex-col gap-y-6 gap-x-20 mt-10 sm:mt-16 justify-between md:max-w-screen-xl mx-auto">
+        <TokenStat
+          title="Market Cap"
+          value={`$${formatUSD(ognPrice * totalOgn)}`}
+        />
+        <TokenStat
+          title="Circulating Supply"
+          value={formatNum(circulatingOgn)}
+        />
+        <TokenStat title="Total Supply" value={formatNum(totalOgn)} />
+      </div>
     </div>
   );
 };
+
+const TokenStat = ({
+  title,
+  value,
+}: {
+  title: string;
+  value: string | number;
+}) => (
+  <div className="border-l border-white border-opacity-50 pl-5 sm:pl-10 py-3">
+    <StatHeading title={title} />
+    <Typography.H5 className="text-white sm:text-4xl">{value}</Typography.H5>
+  </div>
+);
 
 interface Exchange {
   name: string;
@@ -217,7 +249,7 @@ const Exchange = ({ name, url, logo }: Exchange) => {
 
 const WhereToBuy = () => {
   return (
-    <div className="p-9 text-center mb-16">
+    <div className="p-9 text-center">
       <Typography.H3 className="mt-6" style={{ color: "#1E293B" }}>
         Where to buy OGN
       </Typography.H3>
@@ -417,7 +449,7 @@ const wallets: Wallet[] = [
 
 const ExcludedWallets = () => {
   return (
-    <div className="p-9 text-center mb-16">
+    <div className="p-2 sm:p-9 text-center mb-16">
       <Typography.H3 className="mt-6" style={{ color: "#1E293B" }}>
         Wallets excluded from circulating supply
       </Typography.H3>
@@ -504,7 +536,7 @@ const Dashboard = ({
       <main style={{ backgroundColor: "#F6F8FE" }}>
         <TokenStats {...ognInfo} {...rewardsInfo} />
         <div className="max-w-screen-xl mx-auto sm:px-9 px-0">
-          <section className="mb-24 relative">
+          <section className="sm:mb-24 relative">
             <WhereToBuy />
           </section>
         </div>
