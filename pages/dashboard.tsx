@@ -57,7 +57,7 @@ const PriceChangeIndicator = ({
       } text-right py-0.5 px-1 rounded-md`}
     >
       <Typography.Body className={`${colorClass} text-sm`}>
-        {change > 0 ? "▲" : "▼"} {change}%
+        {change > 0 ? "▲" : "▼"} {formatChange(change)}%
       </Typography.Body>
     </div>
   );
@@ -67,6 +67,7 @@ const formatNum = (val: number) => numeral(val).format("0,"); //123,456,789
 const formatEth = (eth: number) => numeral(eth).format("0.00a"); //123.45k
 const formatOgn = (ogn: number) => numeral(ogn).format("0a"); //123k
 const formatUSD = (usd: number) => numeral(usd).format("0,"); //123,456,789
+const formatChange = (change: number) => numeral(change).format("0.00"); //123.45
 
 const StatHeading = ({ title }: { title: string }) => (
   <Typography.Body className="text-sm lg:text-md text-gray-stats uppercase font-bold">
@@ -87,6 +88,8 @@ const TokenStats = ({
   ognDeposited,
   ethInRewardsPool,
   ognInRewardsPool,
+  ogn24hChange,
+  marketCap,
 }: {
   circulatingOgn: number;
   totalOgn: number;
@@ -94,6 +97,8 @@ const TokenStats = ({
   ognDeposited: number;
   ethInRewardsPool: number;
   ognInRewardsPool: number;
+  ogn24hChange: number;
+  marketCap: number;
 }) => {
   return (
     <div className="px-9 sm:py-24 py-8 bg-blue-stats">
@@ -115,7 +120,7 @@ const TokenStats = ({
         <div className="w-full md:w-1/2 mt-8 sm:mt-0 flex flex-wrap sm:justify-end justify-start items-start gap-6">
           <div className="grid grid-cols-1 justify-items-start sm:justify-items-end">
             <Typography.H3 className="text-white">${ognPrice}</Typography.H3>
-            <PriceChangeIndicator change={2.3} className="mt-1 mb-3" />
+            <PriceChangeIndicator change={ogn24hChange} className="mt-1 mb-3" />
             <StatHeading title="Rewards Pool" />
             <Typography.Body className="text-sm lg:text-md text-white">
               {formatEth(ethInRewardsPool)} ETH + {formatOgn(ognInRewardsPool)}{" "}
@@ -148,10 +153,7 @@ const TokenStats = ({
       </div>
       <AddToWallet className="sm:hidden text-center block mt-8" />
       <div className="flex sm:flex-row flex-col gap-y-6 gap-x-20 mt-10 sm:mt-16 justify-between md:max-w-screen-xl mx-auto">
-        <TokenStat
-          title="Market Cap"
-          value={`$${formatUSD(ognPrice * totalOgn)}`}
-        />
+        <TokenStat title="Market Cap" value={`$${formatUSD(marketCap)}`} />
         <TokenStat
           title="Circulating Supply"
           value={formatNum(circulatingOgn)}
@@ -508,12 +510,13 @@ const Dashboard = ({
     circulatingOgn: number;
     totalOgn: number;
     ognPrice: number;
+    ognMarketCap: number;
+    ogn24hChange: number;
   };
   socials: Social[];
   articles: Article[];
   seo: SeoFormatted;
 }) => {
-  console.log(ognInfo);
   const rewardsInfo = {
     ognDeposited: 94345435,
     ethInRewardsPool: 53.6554,
