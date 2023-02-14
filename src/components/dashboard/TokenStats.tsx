@@ -39,8 +39,25 @@ const StatHeading = ({ title }: { title: string }) => (
 );
 
 const AddToWallet = ({ className }: { className?: string }) => (
-  <a href="#" className={`text-white text-md mt-3 ${className}`}>
-    Add to wallet +
+  <a
+    href="#"
+    className={`text-white text-md mt-3 flex justify-center items-center ${className}`}
+  >
+    Add to wallet
+    <span role="img" aria-label="plus-circle" className="ml-2">
+      <svg
+        viewBox="64 64 896 896"
+        focusable="false"
+        data-icon="plus-circle"
+        width="1em"
+        height="1em"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"></path>
+        <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+      </svg>
+    </span>
   </a>
 );
 
@@ -78,7 +95,7 @@ const TokenStats = ({
             OGN is the governance token for the Origin Story platform and can be
             staked for ETH rewards.
           </Typography.Body>
-          <AddToWallet className="hidden sm:block" />
+          <AddToWallet className="hidden sm:flex sm:justify-start" />
         </div>
         <div className="w-full md:w-1/2 mt-8 sm:mt-0 flex flex-wrap sm:justify-end justify-start items-start gap-6">
           <div className="grid grid-cols-1 justify-items-start sm:justify-items-end">
@@ -114,7 +131,7 @@ const TokenStats = ({
           </div>
         </div>
       </div>
-      <AddToWallet className="sm:hidden text-center block mt-8" />
+      <AddToWallet className="sm:hidden text-center mt-8" />
       <div className="flex sm:flex-row flex-col gap-y-6 gap-x-20 mt-10 sm:mt-16 justify-between md:max-w-screen-xl mx-auto">
         <TokenStat title="Market Cap" value={`$${formatUSD(marketCap)}`} />
         <TokenStat

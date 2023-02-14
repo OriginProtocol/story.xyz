@@ -19,12 +19,14 @@ import StakeCTA from "../src/components/dashboard/StakeCTA";
 import ExcludedWallets from "../src/components/dashboard/ExcludedWallets";
 import { requestGovernanceWalletBalances } from "../src/requestGovernanceWalletBalances";
 import { Wallet } from "../src/helpers/excludedWallets";
+import requestStakingData, { StakingData } from "../src/requestStakingData";
 
 const Dashboard = ({
   links,
   ognInfo,
   seo,
   walletBalances,
+  stakingData,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[];
   ognInfo: {
@@ -35,10 +37,11 @@ const Dashboard = ({
     ogn24hChange: number;
   };
   walletBalances: Wallet[];
+  stakingData: StakingData;
   seo: SeoFormatted;
 }) => {
+  //FIXME: add actual implementation here
   const rewardsInfo = {
-    ognDeposited: 94345435,
     ethInRewardsPool: 53.6554,
     ognInRewardsPool: 215343,
   };
@@ -56,13 +59,13 @@ const Dashboard = ({
       <Seo seo={seo} />
       <Header webProperty="story" mappedLinks={links} />
       <main style={{ backgroundColor: "#F6F8FE" }}>
-        <TokenStats {...ognInfo} {...rewardsInfo} />
+        <TokenStats {...ognInfo} {...rewardsInfo} {...stakingData} />
         <div className="max-w-screen-xl mx-auto sm:px-9 px-0">
           <section className="sm:mb-24 relative">
             <WhereToBuy />
           </section>
         </div>
-        <StakeCTA {...rewardsInfo} />
+        <StakeCTA {...rewardsInfo} {...stakingData} />
         <ExcludedWallets walletBalances={walletBalances} />
       </main>
       <div className="relative z-10">
@@ -77,12 +80,14 @@ export async function getStaticProps() {
   const ognInfo = await requestOgnData();
   const seoRes = await fetchAPI("/story/page/en/%2F");
   const walletBalances = await requestGovernanceWalletBalances();
+  const stakingData = await requestStakingData();
 
   return {
     props: {
       links,
       ognInfo,
       walletBalances,
+      stakingData,
       seo: transformSeo(seoRes.data),
     },
     revalidate: 5 * 60, // revalidate every 5 minutes

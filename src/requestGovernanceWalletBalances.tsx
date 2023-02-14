@@ -5,7 +5,7 @@ const alchemyUrl = process.env.ALCHEMY_URL;
 const ognContractAddress = "0x8207c1FfC5B6804F6024322CcF34F29c3541Ae26";
 const ognDecimals = 18;
 
-async function requestOgnBalanceForWallet(address: string) {
+export async function requestOgnBalanceForWallet(address: string) {
   const options = {
     method: "POST",
     headers: {
