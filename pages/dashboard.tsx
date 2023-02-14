@@ -40,12 +40,6 @@ const Dashboard = ({
   stakingData: StakingData;
   seo: SeoFormatted;
 }) => {
-  //FIXME: add actual implementation here
-  const rewardsInfo = {
-    ethInRewardsPool: 53.6554,
-    ognInRewardsPool: 215343,
-  };
-
   return (
     <div className="relative overflow-hidden">
       <Head>
@@ -59,11 +53,11 @@ const Dashboard = ({
       <Seo seo={seo} />
       <Header webProperty="story" mappedLinks={links} />
       <main style={{ backgroundColor: "#F6F8FE" }}>
-        <TokenStats {...ognInfo} {...rewardsInfo} {...stakingData} />
+        <TokenStats {...ognInfo} {...stakingData} />
         <section className="max-w-screen-xl mx-auto sm:px-9 px-0 sm:mb-24 relative">
           <WhereToBuy />
         </section>
-        <StakeCTA {...rewardsInfo} {...stakingData} />
+        <StakeCTA {...stakingData} />
         <ExcludedWallets walletBalances={walletBalances} />
       </main>
       <div className="relative z-10">
@@ -75,10 +69,13 @@ const Dashboard = ({
 
 export async function getStaticProps() {
   const { links } = await requestCmsData();
-  const ognInfo = await requestOgnData();
-  const seoRes = await fetchAPI("/story/page/en/%2F");
-  const walletBalances = await requestGovernanceWalletBalances();
-  const stakingData = await requestStakingData();
+
+  const [ognInfo, seoRes, walletBalances, stakingData] = await Promise.all([
+    requestOgnData(),
+    fetchAPI("/story/page/en/%2F"),
+    requestGovernanceWalletBalances(),
+    requestStakingData(),
+  ]);
 
   return {
     props: {
