@@ -106,7 +106,7 @@ const WhereToBuy = () => {
           label="View All on CoinGecko"
           className="w-full sm:w-auto font-normal text-base md:text-2xl"
           size="medium"
-          href="mailto: partnerships@story.xyz"
+          href="https://www.coingecko.com/en/coins/origin-protocol#markets"
           target="_blank"
           rel="noreferrer"
         />
@@ -116,7 +116,7 @@ const WhereToBuy = () => {
           label="View All on CoinMarketCap"
           className="w-full sm:w-auto font-normal text-base md:text-2xl"
           size="medium"
-          href="mailto: partnerships@story.xyz"
+          href="https://coinmarketcap.com/currencies/origin-protocol/markets/"
           target="_blank"
           rel="noreferrer"
         />

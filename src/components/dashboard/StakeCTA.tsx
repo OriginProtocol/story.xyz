@@ -77,14 +77,14 @@ const StakeCTA = ({
         type="primary"
         webProperty="story"
         label="Earn Rewards"
-        className="w-full sm:w-auto from-pink-600 to-rose-300 font-normal text-base md:text-2xl"
+        className="w-full sm:w-auto from-pink-600 to-rose-300 font-normal text-base md:text-2xl relative z-20"
         size="medium"
         href="https://app.story.xyz/stake"
         target="_blank"
         rel="noreferrer"
       />
       <div
-        className="absolute"
+        className="absolute z-10"
         style={{ right: "calc(50% - 69rem)", top: "32rem" }}
       >
         <Image
@@ -92,7 +92,7 @@ const StakeCTA = ({
           width="1156"
           height="1140"
           alt="Spline 21"
-          className="hidden sm:block -z-10"
+          className="hidden sm:block"
         />
       </div>
     </div>

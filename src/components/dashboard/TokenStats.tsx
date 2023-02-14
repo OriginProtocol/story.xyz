@@ -114,7 +114,7 @@ const TokenStats = ({
               label="Buy OGN"
               className="font-normal text-base md:text-md from-white to-white text-gray-900 px-8"
               size="medium"
-              href="mailto: partnerships@story.xyz"
+              href="https://app.uniswap.org/#/swap?outputCurrency=0x8207c1ffc5b6804f6024322ccf34f29c3541ae26"
               target="_blank"
               rel="noreferrer"
             />

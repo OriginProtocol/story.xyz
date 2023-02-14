@@ -60,11 +60,9 @@ const Dashboard = ({
       <Header webProperty="story" mappedLinks={links} />
       <main style={{ backgroundColor: "#F6F8FE" }}>
         <TokenStats {...ognInfo} {...rewardsInfo} {...stakingData} />
-        <div className="max-w-screen-xl mx-auto sm:px-9 px-0">
-          <section className="sm:mb-24 relative">
-            <WhereToBuy />
-          </section>
-        </div>
+        <section className="max-w-screen-xl mx-auto sm:px-9 px-0 sm:mb-24 relative">
+          <WhereToBuy />
+        </section>
         <StakeCTA {...rewardsInfo} {...stakingData} />
         <ExcludedWallets walletBalances={walletBalances} />
       </main>
