@@ -65,7 +65,6 @@ const TokenStats = ({
   circulatingOgn,
   totalOgn,
   ognPrice,
-  ognDeposited,
   ethInRewardsPool,
   ognInRewardsPool,
   ogn24hChange,
