@@ -8,7 +8,7 @@ const ExcludedWallets = ({
   walletBalances: Wallet[];
 }) => {
   return (
-    <div className="p-2 sm:p-9 text-center mb-16">
+    <div className="p-2 sm:p-9 text-center pb-16">
       <Typography.H3 className="mt-6" style={{ color: "#1E293B" }}>
         Wallets excluded from circulating supply
       </Typography.H3>
