@@ -49,7 +49,7 @@ const StakeCTA = ({
           gradients={["#AFA1FF", "#F68BFF", "#FD9AC2"]}
         />
       </Typography.H2>
-      <Typography.H6 className="my-8 text-white opacity-75 ">
+      <Typography.H6 className="my-8 text-white opacity-75">
         Earn 100% of all marketplace fees when you stake your OGN
       </Typography.H6>
 
