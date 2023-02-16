@@ -1,0 +1,22 @@
+/**
+ * And why is this file now called zglobals.css? Because of https://github.com/vercel/next.js/issues/16630
+ * Some files, including _app.tsx, import both this and origin-storybook/lib/styles.css,
+ * but the order of inclusion matters because we're loading some Tailwind twice for some reason and
+ * occasionally it causes a weird bug where the styles are not applied. The only way to make this file
+ * appear after origin-storybook/lib/styles.css is to make its filename >= style.css. Hence z.
+ * The specific issue it caused was making `w-full sm:w-auto` not work as `w-full` is declared in both
+ * .css files, and was dominating the `sm:w-auto` declaration (which only exists once). This is probably a bug.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-article {
+  background-image: -webkit-linear-gradient(top, #f6f8fe 50%, #ffffff 50%);
+}
+
+.gradient-404 {
+  background-image: -webkit-linear-gradient(left, #cb6fde, #5c2eff, #0074f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

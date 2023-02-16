@@ -1,21 +1,27 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export const getOgn = async () => {
   const ognFetches = await Promise.all([
     fetch(`${process.env.NEXT_LEGACY_WEBSITE_HOST}/circulating-ogn`),
     fetch(`${process.env.NEXT_LEGACY_WEBSITE_HOST}/total-ogn`),
-    fetch(`${process.env.NEXT_PUBLIC_COINGECKO}/price?ids=origin-protocol&vs_currencies=usd`),
-  ])
+    fetch(
+      `${process.env.NEXT_PUBLIC_COINGECKO}/price?ids=origin-protocol&vs_currencies=usd&include_market_cap=true&include_24hr_change=true`
+    ),
+  ]);
 
-  const response = await Promise.all(ognFetches.map(ognRes => ognRes.json()))
-  return response
-}
+  const response = await Promise.all(ognFetches.map((ognRes) => ognRes.json()));
+  return response;
+};
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const [ circulatingOgn, totalOgn, ognPrice] = await getOgn()
+  const [circulatingOgn, totalOgn, ognPrice] = await getOgn();
 
-  res.status(200).json({ circulatingOgn, totalOgn, ognPrice: ognPrice['origin-protocol'].usd })
+  res.status(200).json({
+    circulatingOgn,
+    totalOgn,
+    ognPrice: ognPrice["origin-protocol"].usd,
+  });
 }

@@ -1,8 +1,14 @@
-import { getOgn } from "../pages/api/ogn"
+import { getOgn } from "../pages/api/ogn";
 
 const requestOgnData = async () => {
-  const [ circulatingOgn, totalOgn, ognPrice ] = await getOgn()
-  return { circulatingOgn, totalOgn, ognPrice: (ognPrice['origin-protocol'] || {}).usd || null }
-}
+  const [circulatingOgn, totalOgn, ognData] = await getOgn();
+  const {
+    usd: ognPrice,
+    usd_market_cap: marketCap,
+    usd_24h_change: ogn24hChange,
+  } = ognData["origin-protocol"] || {};
 
-export default requestOgnData
+  return { circulatingOgn, totalOgn, ognPrice, marketCap, ogn24hChange };
+};
+
+export default requestOgnData;
