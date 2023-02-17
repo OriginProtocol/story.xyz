@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: 18
           cache: yarn
+      - run: yarn
       - run: yarn build
 
   lint:
@@ -30,4 +31,5 @@ jobs:
         with:
           node-version: 18
           cache: yarn
+      - run: yarn
       - run: yarn lint

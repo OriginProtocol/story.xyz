@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./src",
+    "check-types": "tsc --noemit",
+    "lint": "yarn check-types && eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {

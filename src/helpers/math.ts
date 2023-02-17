@@ -42,13 +42,17 @@ export function formatCurrencyAbbreviated(num: number, decimalDigits: number) {
     : "0";
 }
 
-export function formatCurrency(value: string | number, decimals: number, truncate = true) {
-  if (typeof value === 'number') {
-    value = value.toString()
+export function formatCurrency(
+  value: string | number,
+  decimals: number,
+  truncate = true
+) {
+  if (typeof value === "number") {
+    value = value.toString();
   }
   // avoid false formatting of e - notated numbers
   if (parseFloat(value) < Math.pow(10, decimals * -1)) {
-    value = '0';
+    value = "0";
   }
 
   return formatCurrencyMinMaxDecimals(value, {
@@ -65,8 +69,17 @@ export function aprToApy(apr: number, aprDays: number) {
 
 export function formatCurrencyMinMaxDecimals(
   value: string,
-  { minDecimals, maxDecimals, truncate, floorInsteadOfRound = false }:
-  { minDecimals: number, maxDecimals: number, truncate?: boolean, floorInsteadOfRound?: boolean}
+  {
+    minDecimals,
+    maxDecimals,
+    truncate,
+    floorInsteadOfRound = false,
+  }: {
+    minDecimals: number;
+    maxDecimals: number;
+    truncate?: boolean;
+    floorInsteadOfRound?: boolean;
+  }
 ) {
   if (value === "") {
     return "0.00";
@@ -78,8 +91,10 @@ export function formatCurrencyMinMaxDecimals(
   if (truncate) {
     valueToUse = truncateDecimals(value, maxDecimals);
   } else if (floorInsteadOfRound) {
-    valueToUse = String(Math.floor(parseFloat(value) * Math.pow(10, maxDecimals)) /
-    Math.pow(10, maxDecimals));
+    valueToUse = String(
+      Math.floor(parseFloat(value) * Math.pow(10, maxDecimals)) /
+        Math.pow(10, maxDecimals)
+    );
   }
   const options = {
     minimumFractionDigits: minDecimals,
@@ -123,7 +138,7 @@ export function checkValidInputForCoin(amount: string, coin: string) {
   const COIN = coin.toLowerCase();
   let decimals;
 
-  switch (coin) {
+  switch (COIN) {
     case "usdc":
       decimals = 6;
       break;
