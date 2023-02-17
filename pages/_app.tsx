@@ -1,19 +1,19 @@
-import { useEffect } from "react"
-import { useRouter } from "next/router"
-import '../src/styles/globals.css'
-import '@originprotocol/origin-storybook/lib/styles.css'
-import type { AppProps, AppContext } from 'next/app'
-import Script from 'next/script'
-import { GTM_ID, pageview } from '../lib/gtm'
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import "@originprotocol/origin-storybook/lib/styles.css";
+import "../src/styles/zglobals.css";
+import type { AppProps } from "next/app";
+import Script from "next/script";
+import { GTM_ID, pageview } from "../lib/gtm";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
-    router.events.on('routeChangeComplete', pageview)
+    router.events.on("routeChangeComplete", pageview);
     return () => {
-      router.events.off('routeChangeComplete', pageview)
-    }
-  }, [router.events])
+      router.events.off("routeChangeComplete", pageview);
+    };
+  }, [router.events]);
 
   return (
     <>
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <Component {...pageProps} />
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
