@@ -1,21 +1,16 @@
-import { Card, Typography } from '@originprotocol/origin-storybook'
-import Image from 'next/future/image'
-import Link from 'next/link'
-import React from 'react'
-import Moment from 'react-moment'
-import { Article } from './types'
+import { Card, Typography } from "@originprotocol/origin-storybook";
+import Image from "next/future/image";
+import Link from "next/link";
+import Moment from "react-moment";
+import { Article } from "./types";
 
-const LatestStories = ({
-  articles,
-}: {
-  articles: Article[]
-}) => {
+const LatestStories = ({ articles }: { articles: Article[] }) => {
   return (
     <section className="bg-[#f6f8fe] md:mt-32">
       <div className="mx-auto">
         <div className="flex flex-col px-10 lg:px-7 py-12 max-w-screen-xl mx-auto md:py-32">
           <div className="flex flex-col mt-1 md:mt-10 md:flex-row md:items-center md:justify-between">
-            <Typography.H3 className='font-bold'>Latest stories</Typography.H3>
+            <Typography.H3 className="font-bold">Latest stories</Typography.H3>
             <Link href="/blog">
               <a
                 target="_blank"
@@ -35,12 +30,21 @@ const LatestStories = ({
                   title={article.title}
                   img={
                     <Image
-                      src={article.cardCover?.url || article.cover?.url || '/images/logos/origin-press.svg'}
-                      alt='Origin Protocol'
-                      width='640' height='312'
+                      src={
+                        article.cardCover?.url ||
+                        article.cover?.url ||
+                        "/images/logos/origin-press.svg"
+                      }
+                      alt="Origin Protocol"
+                      width="640"
+                      height="312"
                     />
                   }
-                  body={<Moment format="MMMM D, YYYY">{article.publishBackdate || article.publishedAt}</Moment>}
+                  body={
+                    <Moment format="MMMM D, YYYY">
+                      {article.publishBackdate || article.publishedAt}
+                    </Moment>
+                  }
                   linkText={"Read more"}
                   linkHref={`/${article.slug}`}
                 />
@@ -50,7 +54,7 @@ const LatestStories = ({
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default LatestStories
+export default LatestStories;

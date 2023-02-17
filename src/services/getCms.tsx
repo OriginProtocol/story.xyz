@@ -30,16 +30,8 @@ export const getNavLinks = async () => {
   });
 
   const dataParsed = await data.json();
-  const links = dataParsed.data;
 
-  const h4x = links.find((link) => link.attributes?.label === "Dashboard") || {
-    attributes: {},
-  };
-
-  h4x.attributes.href = "/dashboard";
-  h4x.attributes.target = "_self";
-
-  return links;
+  return dataParsed.data;
 };
 
 export const getCollections = async () => {

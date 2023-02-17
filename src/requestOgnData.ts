@@ -8,7 +8,13 @@ const requestOgnData = async () => {
     usd_24h_change: ogn24hChange,
   } = ognData["origin-protocol"] || {};
 
-  return { circulatingOgn, totalOgn, ognPrice, marketCap, ogn24hChange };
+  return {
+    circulatingOgn,
+    totalOgn,
+    ognPrice: ognPrice ?? null,
+    marketCap: marketCap ?? null,
+    ogn24hChange: ogn24hChange ?? null,
+  };
 };
 
 export default requestOgnData;

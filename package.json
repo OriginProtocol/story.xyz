@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./src",
+    "check-types": "tsc --noemit",
+    "lint": "yarn check-types && eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
@@ -44,6 +45,6 @@
     "typescript": "4.8.3"
   },
   "engines": {
-    "node": "18.11.0"
+    "node": ">=18.0.0"
   }
 }

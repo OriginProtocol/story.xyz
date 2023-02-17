@@ -1,18 +1,6 @@
 import Image from "next/future/image";
 import { Button, Typography } from "@originprotocol/origin-storybook";
 
-import oneinch from "../../../public/logos/exchanges/1inch.svg";
-import uniswap from "../../../public/logos/exchanges/uniswap.svg";
-import sushiswap from "../../../public/logos/exchanges/sushiswap.svg";
-import coinbase from "../../../public/logos/exchanges/coinbase.svg";
-import binance from "../../../public/logos/exchanges/binance.svg";
-import okx from "../../../public/logos/exchanges/okx.svg";
-import balancer from "../../../public/logos/exchanges/balancer.svg";
-import kucoin from "../../../public/logos/exchanges/kucoin.svg";
-import kraken from "../../../public/logos/exchanges/kraken.svg";
-import huobi from "../../../public/logos/exchanges/huobi.svg";
-import cryptocom from "../../../public/logos/exchanges/cryptocom.svg";
-
 interface Exchange {
   name: string;
   url: string;
@@ -23,64 +11,71 @@ const exchanges: Exchange[] = [
   {
     name: "1Inch",
     url: "https://app.1inch.io/#/1/simple/swap/ETH/OGN",
-    logo: oneinch,
+    logo: "/logos/exchanges/1inch.svg",
   },
   {
     name: "Uniswap",
     url: "https://app.uniswap.org/#/swap?outputCurrency=0x8207c1ffc5b6804f6024322ccf34f29c3541ae26",
-    logo: uniswap,
+    logo: "/logos/exchanges/uniswap.svg",
   },
   {
     name: "SushiSwap",
     url: "https://app.sushi.com/swap?outputCurrency=0x8207c1ffc5b6804f6024322ccf34f29c3541ae26",
-    logo: sushiswap,
+    logo: "/logos/exchanges/sushiswap.svg",
   },
   {
     name: "Coinbase",
     url: "https://www.coinbase.com/price/origin-token",
-    logo: coinbase,
+    logo: "/logos/exchanges/coinbase.svg",
   },
   {
     name: "Binance",
     url: "https://www.binance.com/en/trade/OGN_USDT",
-    logo: binance,
+    logo: "/logos/exchanges/binance.svg",
   },
   {
     name: "OKEx",
     url: "https://www.okex.com/spot/trade#product=OGN-USDT",
-    logo: okx,
+    logo: "/logos/exchanges/okx.svg",
   },
   {
     name: "Balancer",
     url: "https://pools.balancer.exchange/#/pool/0xae1019cfc59dc21a2395c8b38a6f6d0df61d2c22/",
-    logo: balancer,
+    logo: "/logos/exchanges/balancer.svg",
   },
   {
     name: "KuCoin",
     url: "https://www.kucoin.com/trade/OGN-USDT",
-    logo: kucoin,
+    logo: "/logos/exchanges/kucoin.svg",
   },
   {
     name: "Kraken",
     url: "https://www.kraken.com/prices/origin-protocol?quote=usd",
-    logo: kraken,
+    logo: "/logos/exchanges/kraken.svg",
   },
   {
     name: "Huobi",
     url: "https://www.huobi.com/",
-    logo: huobi,
+    logo: "/logos/exchanges/huobi.svg",
   },
   {
     name: "Crypto.com",
     url: "https://crypto.com/",
-    logo: cryptocom,
+    logo: "/logos/exchanges/cryptocom.svg",
   },
 ];
 
 const Exchange = ({ name, url, logo }: Exchange) => {
   return (
     <a href={url}>
-      <Image key={name} src={logo} className="exchanges" alt={`${name} logo`} />
+      <Image
+        key={name}
+        src={logo}
+        className="exchanges w-full h-auto"
+        alt={`${name} logo`}
+        width="0"
+        height="0"
+      />
     </a>
   );
 };
