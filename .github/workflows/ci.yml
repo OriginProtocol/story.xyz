@@ -21,6 +21,7 @@ jobs:
           node-version: 18
           cache: yarn
       - run: yarn
+      - run: cp .env.example .env
       - run: yarn build
 
   lint:
@@ -32,4 +33,5 @@ jobs:
           node-version: 18
           cache: yarn
       - run: yarn
+      - run: cp .env.example .env
       - run: yarn lint
