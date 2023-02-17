@@ -7,8 +7,13 @@ concurrency:
   group: ${{ github.ref_name }}
 
 jobs:
+  # This job is just to test that the build does not fail;
+  # we don't actually use the output of this
   build:
     runs-on: ubuntu-latest
+    env:
+      # we have to fake this out to get build to work
+      STRAPI_API_URL: https://api.example.com
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
