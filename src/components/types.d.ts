@@ -2,6 +2,7 @@ export type Article = {
   title: string;
   description: string;
   slug: string;
+  body?: string;
   cover?: {
     url: string;
     alternativeText: string;
