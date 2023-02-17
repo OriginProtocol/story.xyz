@@ -3,17 +3,31 @@ export type Article = {
   description: string;
   slug: string;
   body?: string;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    metaImage?: {
+      formats?: object;
+    };
+  };
   cover?: {
     url: string;
     alternativeText: string;
+    formats?: object;
   };
   cardCover?: {
     url: string;
     alternativeText: string;
+    formats?: object;
   };
   category: {
     name: string;
     slug: string;
+  };
+  author?: {
+    avatar?: {
+      formats?: object;
+    };
   };
   publishBackdate?: string;
   publishedAt: string;
