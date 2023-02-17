@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import "@originprotocol/origin-storybook/lib/styles.css";
 import "../src/styles/zglobals.css";
-import type { AppProps, AppContext } from "next/app";
+import type { AppProps } from "next/app";
 import Script from "next/script";
 import { GTM_ID, pageview } from "../lib/gtm";
 

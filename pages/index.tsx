@@ -101,12 +101,6 @@ const Home = ({
           <section className="relative z-10">
             <div className="flex items-end">
               <Typography.H5 as="h3">Marketplaces</Typography.H5>
-              <Typography.Link
-                className="ml-6 hidden md:flex items-center relative"
-                style={{
-                  bottom: "0.4rem",
-                }}
-              ></Typography.Link>
             </div>
             <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
               {collections.map((collection) => (

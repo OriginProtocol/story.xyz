@@ -101,19 +101,18 @@ export async function getStaticProps() {
     }
 
     //there's a lot of data the client doesn't need, so delete it here
+    delete article.body;
     delete article.seo?.metaImage;
     delete article.cover?.formats;
     delete article.cardCover?.formats;
     delete article.author?.avatar?.formats;
   });
 
-  const sortedArticles = articles
-    .sort((a: Article, b: Article) =>
-      (b.publishBackdate || b.publishedAt).localeCompare(
-        a.publishBackdate || a.publishedAt
-      )
-    ) //body is heavy, remove it
-    .map(({ body, ...rest }: Article) => rest);
+  const sortedArticles = articles.sort((a: Article, b: Article) =>
+    (b.publishBackdate || b.publishedAt).localeCompare(
+      a.publishBackdate || a.publishedAt
+    )
+  );
 
   const categoryList = Object.values(categories);
 
