@@ -6,19 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./src",
+    "check-types": "tsc --noemit",
+    "lint": "yarn check-types && eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
     "@originprotocol/origin-storybook": "^0.27.2",
     "@types/he": "^1.1.2",
+    "@types/numeral": "^2.0.2",
     "@types/qs": "^6.9.7",
     "@types/sanitize-html": "^2.8.0",
+    "alchemy-sdk": "^2.4.3",
     "critters": "^0.0.16",
     "dotenv": "^16.0.2",
     "he": "^1.2.0",
     "moment": "^2.29.4",
     "next": "12.3.0",
+    "numeral": "^2.0.6",
     "pullstate": "^1.24.0",
     "qs": "^6.11.0",
     "react": "18.2.0",
@@ -41,6 +45,6 @@
     "typescript": "4.8.3"
   },
   "engines": {
-    "node": "14.20.0"
+    "node": ">=18.0.0"
   }
 }

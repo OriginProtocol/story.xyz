@@ -33,7 +33,7 @@ type Icon = {
 };
 
 const transformLinks = (links: LinkSet<Link<Icon>>[]) => {
-  const sortOrder = (a: any, b: any) => {
+  const sortOrder = (a: { order: number }, b: { order: number }) => {
     return a.order - b.order;
   };
 
@@ -58,6 +58,7 @@ const transformLinks = (links: LinkSet<Link<Icon>>[]) => {
               icon: link.icon?.data?.attributes || null,
               target: link.target,
               nofollow: link.nofollow,
+              order: link.order,
             };
           })
           .sort(sortOrder),
