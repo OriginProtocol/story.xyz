@@ -57,6 +57,7 @@ const Blog = ({
       </Head>
       <Header webProperty="story" mappedLinks={links} />
       <Seo seo={seo} />
+      <main>
         <section className="">
           <div className="mx-auto">
             <div className="flex flex-col px-7 py-12 max-w-screen-xl mx-auto">
