@@ -64,7 +64,7 @@ export default function Dashboard({ circulatingOgn, ognPrice }: Props) {
                 webProperty="story"
                 type="secondary"
                 className="text-center"
-                href="https://api.originprotocol.com/dashboard"
+                href="https://app.uniswap.org/#/swap?outputCurrency=0x8207c1ffc5b6804f6024322ccf34f29c3541ae26"
                 target="_blank"
                 rel="noreferrer"
               />
@@ -73,7 +73,7 @@ export default function Dashboard({ circulatingOgn, ognPrice }: Props) {
                 webProperty="story"
                 type="secondary"
                 className="text-center"
-                href="https://api.originprotocol.com/dashboard"
+                href="/dashboard"
                 target="_blank"
                 rel="noreferrer"
               />
