@@ -63,6 +63,11 @@ const exchanges: Exchange[] = [
     url: "https://crypto.com/",
     logo: "/logos/exchanges/cryptocom.svg",
   },
+  {
+    name: "Bitfinex",
+    url: "https://trading.bitfinex.com/t/OGN:USD?type=exchange",
+    logo: "/logos/exchanges/bitfinex.svg",
+  },
 ];
 
 const Exchange = ({ name, url, logo }: Exchange) => {
