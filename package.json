@@ -11,7 +11,7 @@
     "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
-    "@originprotocol/origin-storybook": "^0.27.2",
+    "@originprotocol/origin-storybook": "^0.27.7",
     "@types/he": "^1.1.2",
     "@types/numeral": "^2.0.2",
     "@types/qs": "^6.9.7",
