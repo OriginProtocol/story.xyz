@@ -73,7 +73,9 @@ const transformCollections = (collections: Collection[]) => {
         "",
       thumbnail:
         collection.attributes.details?.thumbnail?.data?.attributes?.formats
-          ?.thumbnail.url || "",
+          ?.thumbnail.url ||
+        collection.attributes.details?.thumbnail?.data?.attributes?.url ||
+        "",
       thumbnailAlt:
         collection.attributes.details?.thumbnail?.data?.attributes
           ?.alternativeText || "",
