@@ -72,11 +72,11 @@ const transformCollections = (collections: Collection[]) => {
         collection.attributes.details.cover.data?.attributes.alternativeText ||
         "",
       thumbnail:
-        collection.attributes.details.thumbnail.data?.attributes.formats
-          .thumbnail.url || "",
+        collection.attributes.details?.thumbnail?.data?.attributes?.formats
+          ?.thumbnail.url || "",
       thumbnailAlt:
-        collection.attributes.details.thumbnail.data?.attributes
-          .alternativeText || "",
+        collection.attributes.details?.thumbnail?.data?.attributes
+          ?.alternativeText || "",
     };
   });
 };
