@@ -160,30 +160,32 @@ const Home = ({
           <section>
             <Typography.H5 as="h3">Drops</Typography.H5>
             <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
-              {drops.map((collection) => (
-                <Card
-                  {...collection}
-                  img={
-                    <Image
-                      src={collection.img}
-                      alt={collection.imgAlt}
-                      width="640"
-                      height="427"
-                      priority
-                    />
-                  }
-                  thumbnail={
-                    <Image
-                      src={collection.thumbnail}
-                      alt={collection.thumbnailAlt || ""}
-                      width="100"
-                      height="100"
-                      priority
-                    />
-                  }
-                  key={collection.title}
-                />
-              ))}
+              {drops
+                .sort((a, b) => (a.order || 0) - (b.order || 0))
+                .map((collection) => (
+                  <Card
+                    {...collection}
+                    img={
+                      <Image
+                        src={collection.img}
+                        alt={collection.imgAlt}
+                        width="640"
+                        height="427"
+                        priority
+                      />
+                    }
+                    thumbnail={
+                      <Image
+                        src={collection.thumbnail}
+                        alt={collection.thumbnailAlt || ""}
+                        width="100"
+                        height="100"
+                        priority
+                      />
+                    }
+                    key={collection.title}
+                  />
+                ))}
             </div>
           </section>
           <section className="text-center mt-20 mb-36 md:my-36 relative">
