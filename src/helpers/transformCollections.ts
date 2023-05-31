@@ -1,6 +1,7 @@
 type Collection = {
   id: number;
   attributes: {
+    order?: number;
     details: {
       id: number;
       Card: {
@@ -67,6 +68,7 @@ const transformCollections = (collections: Collection[]) => {
       body: collection.attributes.details.Card.description,
       linkText: collection.attributes.details.Card.linkDisplay,
       linkHref: collection.attributes.details.Card.linkURL,
+      order: collection.attributes.order || null,
       img: collection.attributes.details.cover.data?.attributes.url || "",
       imgAlt:
         collection.attributes.details.cover.data?.attributes.alternativeText ||

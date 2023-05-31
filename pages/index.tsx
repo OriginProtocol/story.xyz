@@ -28,6 +28,7 @@ interface CollectionProps extends CardProps {
   imgAlt: string;
   thumbnail: string;
   thumbnailAlt?: string;
+  order?: number;
 }
 
 const Home = ({
@@ -103,30 +104,32 @@ const Home = ({
               <Typography.H5 as="h3">Featured Marketplaces</Typography.H5>
             </div>
             <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6">
-              {collections.map((collection) => (
-                <Card
-                  {...collection}
-                  img={
-                    <Image
-                      src={collection.img}
-                      alt={collection.imgAlt}
-                      width="640"
-                      height="427"
-                      priority
-                    />
-                  }
-                  thumbnail={
-                    <Image
-                      src={collection.thumbnail}
-                      alt={collection.thumbnailAlt || ""}
-                      width="100"
-                      height="100"
-                      priority
-                    />
-                  }
-                  key={collection.title}
-                />
-              ))}
+              {collections
+                .sort((a, b) => (a.order || 0) - (b.order || 0))
+                .map((collection) => (
+                  <Card
+                    {...collection}
+                    img={
+                      <Image
+                        src={collection.img}
+                        alt={collection.imgAlt}
+                        width="640"
+                        height="427"
+                        priority
+                      />
+                    }
+                    thumbnail={
+                      <Image
+                        src={collection.thumbnail}
+                        alt={collection.thumbnailAlt || ""}
+                        width="100"
+                        height="100"
+                        priority
+                      />
+                    }
+                    key={collection.title}
+                  />
+                ))}
             </div>
           </section>
           <section className="text-center my-20 md:my-36">
