@@ -7,46 +7,46 @@ import { Article, Meta } from "./types";
 
 const Category = ({
   categories,
-  setCategory
+  setCategory,
 }: {
   categories: {
-    name: string,
-    slug: string
-  }[],
-  setCategory: React.Dispatch<React.SetStateAction<string>>
+    name: string;
+    slug: string;
+  }[];
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const capitalize = (name: string) => {
     return name.slice(0, 1).toUpperCase() + name.slice(1, name.length);
   };
 
   const categoriesFormatted: {
-    id: number | null,
-    name: string,
-    unavailable: boolean,
+    id: number | null;
+    name: string;
+    unavailable: boolean;
   }[] = categories.map((category, index) => {
     return {
       id: index,
       name: capitalize(category.name),
       unavailable: false,
     };
-  })
+  });
 
   categoriesFormatted.unshift({
     id: null,
     name: "All articles",
     unavailable: false,
-  },)
+  });
 
   return (
     <div className="pl-0 w-96 pt-4">
       <Select
-        label={''}
+        label={""}
         options={categoriesFormatted}
         onSelect={(value) => {
           if (value && value.id !== null) {
             setCategory(categories[value.id].slug);
           } else {
-            setCategory('')
+            setCategory("");
           }
         }}
       />
@@ -57,14 +57,14 @@ const Category = ({
 const Articles = ({
   articles,
   meta,
-  categories
+  categories,
 }: {
-  articles: Article[],
-  meta: Meta,
+  articles: Article[];
+  meta: Meta;
   categories: {
-    name: string
-    slug: string
-  }[]
+    name: string;
+    slug: string;
+  }[];
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -78,12 +78,19 @@ const Articles = ({
 
   const articlePages = Math.ceil(
     (currentCategory.length > 0
-      ? articles.filter((article) => article.category.slug === currentCategory).length
+      ? articles.filter((article) => article.category?.slug === currentCategory)
+          .length
       : meta.pagination.total) / 9
   );
 
   const currentPageArticles = articles
-    ? articles.filter((article) => currentCategory.length === 0 ? true : article.category.slug === currentCategory).slice(9 * (page - 1), 9 * page)
+    ? articles
+        .filter((article) =>
+          currentCategory.length === 0
+            ? true
+            : article.category?.slug === currentCategory
+        )
+        .slice(9 * (page - 1), 9 * page)
     : [];
 
   useEffect(() => {
@@ -96,10 +103,12 @@ const Articles = ({
     setPageNumbers(pageNumbers);
   }, [page, articlePages]);
 
-  const setCategoryAndPage: React.Dispatch<React.SetStateAction<string>> = (cat) => {
-    setPage(1)
-    setCurrentCategory(cat)
-  }
+  const setCategoryAndPage: React.Dispatch<React.SetStateAction<string>> = (
+    cat
+  ) => {
+    setPage(1);
+    setCurrentCategory(cat);
+  };
 
   return (
     <>
@@ -112,16 +121,31 @@ const Articles = ({
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-11 max-w-screen-xl mx-auto">
               {currentPageArticles.map((a) => {
-                if (!currentCategory || currentCategory === a.category.slug) {
+                if (!currentCategory || currentCategory === a.category?.slug) {
                   return (
                     <Card
                       webProperty={"originprotocol"}
                       title={a.title}
-                      img={<Image src={ a.cardCover?.url || a.cover?.url || '/images/logos/origin-press.svg'} alt={a.cover?.alternativeText} width='640' height='312' />}
-                      body={<Moment format="MMMM D, YYYY">{a.publishBackdate || a.publishedAt}</Moment>}
+                      img={
+                        <Image
+                          src={
+                            a.cardCover?.url ||
+                            a.cover?.url ||
+                            "/images/logos/origin-press.svg"
+                          }
+                          alt={a.cover?.alternativeText}
+                          width="640"
+                          height="312"
+                        />
+                      }
+                      body={
+                        <Moment format="MMMM D, YYYY">
+                          {a.publishBackdate || a.publishedAt}
+                        </Moment>
+                      }
                       linkText={"Read more"}
                       linkHref={`/${a.slug}`}
-                      target='_self'
+                      target="_self"
                       key={a.title}
                     />
                   );

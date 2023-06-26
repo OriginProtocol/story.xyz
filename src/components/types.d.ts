@@ -20,7 +20,7 @@ export type Article = {
     alternativeText: string;
     formats?: object;
   };
-  category: {
+  category?: {
     name: string;
     slug: string;
   };
