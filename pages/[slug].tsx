@@ -148,15 +148,17 @@ const Article = ({
         </div>
         <div className="bg-white px-8 md:px-16 lg:px-[8.375rem] pt-8 md:pt-16 pb-10 md:pb-[7.5rem]">
           <div className="max-w-[47.688rem] mx-auto">
-            <div
-              className={`font-sansSailec ${styles.article}`}
-              dangerouslySetInnerHTML={{
-                __html: sanitizeHtml(
-                  he?.decode(article.body),
-                  sanitizationOptions
-                ),
-              }}
-            />
+            {article.body && (
+              <div
+                className={`font-sansSailec ${styles.article}`}
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHtml(
+                    he?.decode(article.body),
+                    sanitizationOptions
+                  ),
+                }}
+              />
+            )}
             <div className="flex items-center mt-12 md:mt-20 space-x-6">
               {article.author?.avatar && (
                 <div className="w-[57px] h-[57px]">

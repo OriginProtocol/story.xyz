@@ -28,6 +28,7 @@ async function getRewards(): Promise<StakingRewardData> {
 async function getStaked(): Promise<StakingDepositData> {
   const response = await fetch("https://api.story.xyz/api/environment");
   const { stakingSeries } = await response.json();
+  if (!stakingSeries) return { ognDeposited: 0, stakingSeries: "" };
 
   const ognDeposited = await requestOgnBalanceForWallet(stakingSeries);
 
