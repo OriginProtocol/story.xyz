@@ -6,18 +6,18 @@ import {
   MappedLink,
   Typography,
 } from "@originprotocol/origin-storybook";
-import Head from "next/head";
+import he from "he";
 import Image from "next/future/image";
+import Head from "next/head";
 import Link from "next/link";
 import Moment from "react-moment";
-import styles from "../src/styles/Article.module.css";
-import { fetchAPI } from "../src/helpers/fetchApi";
-import requestCms from "../src/requestCmsData";
-import transformSeo from "../src/helpers/transformSeo";
-import { SeoFormatted } from "../src/components/types";
-import Seo from "../src/components/Seo";
 import sanitizeHtml from "sanitize-html";
-import he from "he";
+import Seo from "../src/components/Seo";
+import { SeoFormatted } from "../src/components/types";
+import { fetchAPI } from "../src/helpers/fetchApi";
+import transformSeo from "../src/helpers/transformSeo";
+import styles from "../src/styles/Article.module.css";
+import { getNavLinks } from "./api/cms";
 
 const sanitizationOptions = {
   allowedTags: [
@@ -152,7 +152,7 @@ const Article = ({
               className={`font-sansSailec ${styles.article}`}
               dangerouslySetInnerHTML={{
                 __html: sanitizeHtml(
-                  he.decode(article.body),
+                  he?.decode(article.body),
                   sanitizationOptions
                 ),
               }}
@@ -206,8 +206,8 @@ export async function getStaticProps({
   locale: string;
 }) {
   // TODO: Do something for rate-limit
-  const { links } = await requestCms();
-  const { data } = await fetchAPI(`/story/blog/${locale}/${params.slug}`);
+  const links = await getNavLinks();
+  const data = await fetchAPI(`/story/blog/${locale}/${params.slug}`);
 
   if (!data) {
     return {

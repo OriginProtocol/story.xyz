@@ -1,6 +1,11 @@
-import { getCollections, getDrops, getNavLinks, getArticles } from "./services/getCms"
-import transformCollections from "./helpers/transformCollections"
-import transformLinks from "./helpers/transformLinks"
+import {
+  getCollections,
+  getDrops,
+  getNavLinks,
+  getArticles,
+} from "./services/getCms";
+import transformCollections from "./helpers/transformCollections";
+import transformLinks from "./helpers/transformLinks";
 
 const requestCms = async (locale?: string) => {
   const [links, collections, drops, [articles, meta]] = await Promise.all([
@@ -14,8 +19,8 @@ const requestCms = async (locale?: string) => {
     collections: transformCollections(collections),
     drops: transformCollections(drops),
     articles,
-    meta
-  }
-}
+    meta,
+  };
+};
 
-export default requestCms
+export default requestCms;
