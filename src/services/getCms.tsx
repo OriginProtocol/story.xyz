@@ -90,14 +90,16 @@ export const getDrops = async () => {
   return drops;
 };
 
-export const getArticles: () => Promise<[Article[], Meta]> = async () => {
+export const getArticles: (
+  locale?: string
+) => Promise<[Article[], Meta]> = async (locale = "en") => {
   const params = qs.stringify({
     pagination: {
       pageSize: 1000,
     },
   });
 
-  const data = await fetch(`${apiUrl}/story/blog/en?${params}`, {
+  const data = await fetch(`${apiUrl}/story/blog/${locale}?${params}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

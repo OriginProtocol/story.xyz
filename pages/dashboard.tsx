@@ -40,6 +40,8 @@ const Dashboard = ({
   stakingData: StakingData;
   seo: SeoFormatted;
 }) => {
+  if (!stakingData) return null;
+
   return (
     <div className="relative overflow-hidden">
       <Head>

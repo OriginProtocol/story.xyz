@@ -30,6 +30,8 @@ const Blog = ({
   categories,
   meta,
   seo,
+  locales,
+  currentLocale,
 }: {
   links: MappedLink<LinkFormatted<IconFormatted>>[];
   collections: CollectionProps[];
@@ -47,6 +49,8 @@ const Blog = ({
   }[];
   meta: Meta;
   seo: SeoFormatted;
+  locales: [string, string][];
+  currentLocale: string;
 }) => {
   return (
     <div className="relative overflow-hidden">
@@ -69,6 +73,8 @@ const Blog = ({
               <Articles
                 articles={articles}
                 categories={categories}
+                currentLocale={currentLocale}
+                locales={locales}
                 meta={meta}
               />
             </div>
@@ -82,18 +88,25 @@ const Blog = ({
   );
 };
 
-export async function getStaticProps() {
-  const { links, collections, drops, articles, meta } = await requestCmsData();
+export async function getStaticProps({ locale = "en" }: { locale: string }) {
+  const { links, collections, drops, articles, meta } = await requestCmsData(
+    locale
+  );
   const ognInfo = await requestOgnData();
   const socialRes = await fetch(
     `${process.env.NEXT_LEGACY_WEBSITE_HOST}/social-stats`
   );
   const socials = await socialRes.json();
-  const seoRes = await fetchAPI("/story/page/en/%2Fblog");
+  const seoRes = await fetchAPI(`/story/page/${locale}/%2Fblog`);
+  const localeRes = await fetchAPI("/i18n/locales");
 
   const categories: {
     [key: string]: { name: string; slug: string };
   } = {};
+
+  const locales = localeRes.map((locale: { name: string; code: string }) => {
+    return [locale.name, locale.code];
+  });
 
   articles.forEach((article) => {
     if (article && article.category) {
@@ -127,6 +140,8 @@ export async function getStaticProps() {
       categories: categoryList,
       meta,
       seo: transformSeo(seoRes.data),
+      locales,
+      currentLocale: locale,
     },
     revalidate: 5 * 60, // revalidate every 5 minutes
   };

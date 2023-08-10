@@ -33,7 +33,7 @@ export async function requestOgnBalanceForWallet(address: string) {
 
   // Getting balances from the response
   const balances = response["result"];
-  const ognBalance = balances.tokenBalances.find(
+  const ognBalance = balances?.tokenBalances.find(
     ({ contractAddress }: { contractAddress: string }) =>
       contractAddress.toLowerCase() === ognContractAddress.toLowerCase()
   )?.tokenBalance;

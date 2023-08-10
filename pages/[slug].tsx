@@ -6,18 +6,18 @@ import {
   MappedLink,
   Typography,
 } from "@originprotocol/origin-storybook";
-import Head from "next/head";
+import he from "he";
 import Image from "next/future/image";
+import Head from "next/head";
 import Link from "next/link";
 import Moment from "react-moment";
-import styles from "../src/styles/Article.module.css";
-import { fetchAPI } from "../src/helpers/fetchApi";
-import requestCms from "../src/requestCmsData";
-import transformSeo from "../src/helpers/transformSeo";
-import { SeoFormatted } from "../src/components/types";
-import Seo from "../src/components/Seo";
 import sanitizeHtml from "sanitize-html";
-import he from "he";
+import Seo from "../src/components/Seo";
+import { SeoFormatted } from "../src/components/types";
+import { fetchAPI } from "../src/helpers/fetchApi";
+import transformSeo from "../src/helpers/transformSeo";
+import styles from "../src/styles/Article.module.css";
+import { getNavLinks } from "./api/cms";
 
 const sanitizationOptions = {
   allowedTags: [
@@ -148,15 +148,17 @@ const Article = ({
         </div>
         <div className="bg-white px-8 md:px-16 lg:px-[8.375rem] pt-8 md:pt-16 pb-10 md:pb-[7.5rem]">
           <div className="max-w-[47.688rem] mx-auto">
-            <div
-              className={`font-sansSailec ${styles.article}`}
-              dangerouslySetInnerHTML={{
-                __html: sanitizeHtml(
-                  he.decode(article.body),
-                  sanitizationOptions
-                ),
-              }}
-            />
+            {article.body && (
+              <div
+                className={`font-sansSailec ${styles.article}`}
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHtml(
+                    he?.decode(article.body),
+                    sanitizationOptions
+                  ),
+                }}
+              />
+            )}
             <div className="flex items-center mt-12 md:mt-20 space-x-6">
               {article.author?.avatar && (
                 <div className="w-[57px] h-[57px]">
@@ -206,7 +208,7 @@ export async function getStaticProps({
   locale: string;
 }) {
   // TODO: Do something for rate-limit
-  const { links } = await requestCms();
+  const links = await getNavLinks();
   const { data } = await fetchAPI(`/story/blog/${locale}/${params.slug}`);
 
   if (!data) {
