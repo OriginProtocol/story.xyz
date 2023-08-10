@@ -209,7 +209,7 @@ export async function getStaticProps({
 }) {
   // TODO: Do something for rate-limit
   const links = await getNavLinks();
-  const data = await fetchAPI(`/story/blog/${locale}/${params.slug}`);
+  const { data } = await fetchAPI(`/story/blog/${locale}/${params.slug}`);
 
   if (!data) {
     return {
