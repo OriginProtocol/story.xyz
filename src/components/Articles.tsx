@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import { Article, Meta } from "./types";
+import { useRouter } from "next/router";
 
 const Category = ({
   categories,
@@ -38,19 +39,55 @@ const Category = ({
   });
 
   return (
-    <div className="pl-0 w-96 pt-4">
-      <Select
-        label={""}
-        options={categoriesFormatted}
-        onSelect={(value) => {
-          if (value && value.id !== null) {
-            setCategory(categories[value.id].slug);
-          } else {
-            setCategory("");
-          }
-        }}
-      />
-    </div>
+    <Select
+      label={""}
+      options={categoriesFormatted}
+      onSelect={(value) => {
+        if (value && value.id !== null) {
+          setCategory(categories[value.id].slug);
+        } else {
+          setCategory("");
+        }
+      }}
+    />
+  );
+};
+
+const Locales = (props: {
+  locales: [name: string, code: string][];
+  currentLocale: string;
+}) => {
+  const router = useRouter();
+  const { locales, currentLocale } = props;
+  const [locale, setLocale] = useState(currentLocale);
+  const initialLocaleIndex =
+    locales.findIndex((locale) => locale[1] === currentLocale) ?? 0;
+
+  useEffect(() => {
+    router.push("/blog", "/blog", { locale });
+  }, [locale]);
+
+  const localesFormatted = locales.map((locale, index) => {
+    return {
+      id: index,
+      name: locale[0],
+      unavailable: false,
+    };
+  });
+
+  return (
+    <Select
+      label={""}
+      initialValue={initialLocaleIndex}
+      options={localesFormatted}
+      onSelect={(value) => {
+        if (value && value.id !== null) {
+          setLocale(locales[value.id][1]);
+        } else {
+          setLocale("en");
+        }
+      }}
+    />
   );
 };
 
@@ -58,6 +95,8 @@ const Articles = ({
   articles,
   meta,
   categories,
+  locales,
+  currentLocale,
 }: {
   articles: Article[];
   meta: Meta;
@@ -65,6 +104,8 @@ const Articles = ({
     name: string;
     slug: string;
   }[];
+  locales: [string, string][];
+  currentLocale: string;
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -115,10 +156,15 @@ const Articles = ({
       {loaded && currentPageArticles && (
         <section className="stories light px-3">
           <div className="container-fluid max-w-screen-xl mx-auto mt-6 md:mb-28">
-            <Category
-              categories={categories}
-              setCategory={setCategoryAndPage}
-            />
+            <div className="flex justify-start pt-4">
+              <Category
+                categories={categories}
+                setCategory={setCategoryAndPage}
+              />
+              <div className="ml-4">
+                <Locales locales={locales} currentLocale={currentLocale} />
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-11 max-w-screen-xl mx-auto">
               {currentPageArticles.map((a) => {
                 if (!currentCategory || currentCategory === a.category?.slug) {
